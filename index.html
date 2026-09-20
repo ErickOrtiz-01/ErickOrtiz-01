@@ -697,7 +697,102 @@
                 padding: 22px;
             }
         }
-
+            /* =========================
+               PROJECT DETAILS
+            ========================= */
+            
+            .project-details {
+                padding: 90px 0;
+            }
+            
+            .project-overview {
+                background: linear-gradient(
+                    145deg,
+                    rgba(255,255,255,0.045),
+                    rgba(255,255,255,0.015)
+                );
+            
+                border: 1px solid rgba(255,255,255,0.08);
+                border-radius: 14px;
+                padding: 30px;
+                margin-bottom: 60px;
+            }
+            
+            .project-overview p {
+                color: #9aa7b4;
+                margin-top: 12px;
+            }
+            
+            .project-tech {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
+                margin-top: 20px;
+            }
+            
+            .project-step {
+                margin-bottom: 80px;
+            }
+            
+            .step-number {
+                color: #3da9ff;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                font-size: 0.75rem;
+                font-weight: 700;
+                margin-bottom: 8px;
+            }
+            
+            .project-step h3 {
+                color: white;
+                font-size: 1.6rem;
+                margin-bottom: 12px;
+            }
+            
+            .project-step p {
+                color: #9aa7b4;
+                max-width: 800px;
+                margin-bottom: 22px;
+            }
+            
+            .lab-screenshot {
+                display: block;
+                width: 100%;
+                max-width: 950px;
+                height: auto;
+            
+                border-radius: 12px;
+                border: 1px solid rgba(255,255,255,0.1);
+            
+                box-shadow: 0 15px 40px rgba(0,0,0,0.35);
+            }
+            
+            .image-caption {
+                color: #687581;
+                font-size: 0.8rem;
+                margin-top: 10px;
+            }
+            
+            .skills-demonstrated {
+                background: #0b1015;
+                border: 1px solid rgba(61,169,255,0.18);
+                border-radius: 14px;
+                padding: 30px;
+            }
+            
+            .skills-demonstrated h3 {
+                color: white;
+                margin-bottom: 15px;
+            }
+            
+            .skills-demonstrated ul {
+                color: #9aa7b4;
+                padding-left: 20px;
+            }
+            
+            .skills-demonstrated li {
+                margin-bottom: 8px;
+            }
     </style>
 </head>
 
@@ -953,8 +1048,8 @@
 
 
                 <a
-                    href="#"
-                    class="project-link">
+                    href="#active-directory-project"
+                        class="project-link">
 
                     View Project →
 
@@ -1046,6 +1141,244 @@
 
             </div>
                 -->
+
+        </div>
+
+    </div>
+
+</section>
+    <!-- =========================
+     ACTIVE DIRECTORY PROJECT
+========================= -->
+
+<section id="active-directory-project" class="project-details">
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <div class="section-label">
+                Project Case Study
+            </div>
+
+            <h2>
+                Active Directory Enterprise Lab
+            </h2>
+
+            <p class="section-description">
+                A hands-on Windows Server lab designed to simulate
+                Active Directory administration in a small
+                enterprise environment.
+            </p>
+
+        </div>
+
+
+        <!-- PROJECT OVERVIEW -->
+
+        <div class="project-overview">
+
+            <h3>Project Overview</h3>
+
+            <p>
+                I built a virtualized Windows domain environment to
+                gain hands-on experience with Windows Server and
+                Active Directory administration.
+            </p>
+
+            <p>
+                I configured a Windows Server domain controller named
+                <strong>DC01</strong>, installed Active Directory
+                Domain Services, and created the
+                <strong>corp.ortizLabs.com</strong> domain.
+            </p>
+
+            <p>
+                I then created an organizational structure designed
+                to simulate how users, departments, servers, and
+                groups would be organized in a business environment.
+            </p>
+
+
+            <div class="project-tech">
+
+                <span class="tag">Windows Server</span>
+                <span class="tag">Active Directory</span>
+                <span class="tag">DNS</span>
+                <span class="tag">Group Policy</span>
+                <span class="tag">PowerShell</span>
+                <span class="tag">Hyper-V</span>
+
+            </div>
+
+        </div>
+
+
+        <!-- STEP 1 -->
+
+        <div class="project-step">
+
+            <div class="step-number">
+                Step 01
+            </div>
+
+            <h3>
+                Installing Active Directory Domain Services
+            </h3>
+
+            <p>
+                I installed the Active Directory Domain Services
+                role on DC01. The installation also included
+                Group Policy Management, Remote Server
+                Administration Tools, and the Active Directory
+                PowerShell module.
+            </p>
+
+            <img
+                src="images/installing-ad-ds.png"
+                alt="Installing Active Directory Domain Services on DC01"
+                class="lab-screenshot">
+
+            <div class="image-caption">
+                Installing Active Directory Domain Services and
+                administration tools on DC01.
+            </div>
+
+        </div>
+
+
+        <!-- STEP 2 -->
+
+        <div class="project-step">
+
+            <div class="step-number">
+                Step 02
+            </div>
+
+            <h3>
+                Configuring the Domain Controller
+            </h3>
+
+            <p>
+                After installing Active Directory Domain Services,
+                I configured DC01 as a domain controller. Windows
+                Server performed its prerequisite checks before
+                completing the domain controller installation.
+            </p>
+
+            <img
+                src="images/domain-controller.png"
+                alt="Domain controller prerequisite check"
+                class="lab-screenshot">
+
+            <div class="image-caption">
+                AD DS prerequisite checks successfully completed
+                before promoting DC01.
+            </div>
+
+        </div>
+
+
+        <!-- STEP 3 -->
+
+        <div class="project-step">
+
+            <div class="step-number">
+                Step 03
+            </div>
+
+            <h3>
+                Creating the Active Directory Domain
+            </h3>
+
+            <p>
+                After configuring the domain controller, I verified
+                the new domain through Active Directory Users and
+                Computers. The lab uses the
+                <strong>corp.ortizLabs.com</strong> domain.
+            </p>
+
+            <img
+                src="images/domain-created.png"
+                alt="Active Directory domain"
+                class="lab-screenshot">
+
+            <div class="image-caption">
+                Active Directory Users and Computers showing the
+                corp.ortizLabs.com domain.
+            </div>
+
+        </div>
+
+
+        <!-- STEP 4 -->
+
+        <div class="project-step">
+
+            <div class="step-number">
+                Step 04
+            </div>
+
+            <h3>
+                Creating Organizational Units
+            </h3>
+
+            <p>
+                I created organizational units to represent a
+                realistic company structure. Employee departments
+                included IT, HR, Accounting, Sales, and Management,
+                with additional organizational units for servers
+                and groups.
+            </p>
+
+            <img
+                src="images/organizational-units.png"
+                alt="Active Directory organizational units"
+                class="lab-screenshot">
+
+            <div class="image-caption">
+                Organizational unit structure created for the
+                simulated enterprise environment.
+            </div>
+
+        </div>
+
+
+        <!-- SKILLS DEMONSTRATED -->
+
+        <div class="skills-demonstrated">
+
+            <h3>
+                Skills Demonstrated
+            </h3>
+
+            <ul>
+
+                <li>
+                    Windows Server role installation and configuration
+                </li>
+
+                <li>
+                    Active Directory Domain Services deployment
+                </li>
+
+                <li>
+                    Domain controller configuration
+                </li>
+
+                <li>
+                    Active Directory Users and Computers administration
+                </li>
+
+                <li>
+                    Organizational Unit design
+                </li>
+
+                <li>
+                    Windows domain administration fundamentals
+                </li>
+
+            </ul>
 
         </div>
 
