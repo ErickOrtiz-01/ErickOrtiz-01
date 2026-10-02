@@ -616,7 +616,7 @@ body.hacker .sys-status { display: block; }
     font-family: var(--mono);
     font-size: 0.9rem;
     color: var(--accent);
-    transition: opacity 0.5s;
+    transition: opacity 0.15s;
     cursor: pointer;
 }
 #boot pre { font-family: inherit; white-space: pre-wrap; line-height: 1.7; }
@@ -625,6 +625,135 @@ body.hacker .sys-status { display: block; }
 @media (max-width: 600px) {
     #boot { font-size: 0.75rem; }
 }
+
+/* =========================
+   INCOMING TRANSMISSION (hacker mode resume popup)
+========================= */
+#transmission {
+    display: none;
+    position: fixed;
+    left: 18px;
+    bottom: 18px;
+    z-index: 2200;
+    font-family: var(--mono);
+    max-width: calc(100vw - 36px);
+}
+body.hacker #transmission.visible { display: block; animation: txIn 0.5s ease-out; }
+@keyframes txIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
+
+.tx-badge {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid var(--accent-strong);
+    background: rgba(3, 8, 5, 0.94);
+    color: var(--accent-light);
+    font-family: inherit;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    cursor: pointer;
+    box-shadow: 0 8px 30px rgba(0, 200, 83, 0.2);
+    transition: 0.25s;
+}
+.tx-badge:hover { background: var(--accent-strong); color: #031008; }
+.tx-badge:hover .tx-dot { background: #031008; box-shadow: none; }
+
+.tx-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 10px var(--accent);
+    animation: txPulse 1.4s ease-in-out infinite;
+}
+@keyframes txPulse { 50% { opacity: 0.3; } }
+
+.tx-panel {
+    display: none;
+    width: 340px;
+    max-width: 100%;
+    border: 1px solid var(--accent-strong);
+    border-radius: 10px;
+    background: rgba(3, 8, 5, 0.96);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), 0 0 24px rgba(0, 200, 83, 0.15);
+    overflow: hidden;
+}
+#transmission.open .tx-panel { display: block; }
+#transmission.open .tx-badge { display: none; }
+
+.tx-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px;
+    background: rgba(0, 232, 92, 0.1);
+    border-bottom: 1px solid rgba(0, 232, 92, 0.25);
+    color: var(--accent-light);
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+}
+.tx-close {
+    background: none;
+    border: none;
+    color: var(--accent-light);
+    font-family: inherit;
+    font-size: 1.1rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 2px 6px;
+}
+.tx-close:hover { color: #fff; }
+
+.tx-body { padding: 16px 14px; font-size: 0.8rem; color: var(--text-muted); line-height: 1.8; }
+.tx-body b { color: var(--accent-light); font-weight: 400; }
+.tx-body .tx-signal { color: var(--accent); }
+.tx-msg { margin: 12px 0 16px; color: var(--text); }
+
+.tx-open {
+    display: block;
+    text-align: center;
+    padding: 10px 14px;
+    border-radius: 6px;
+    background: var(--accent-strong);
+    color: #031008;
+    font-weight: 700;
+    text-decoration: none;
+    transition: 0.25s;
+}
+.tx-open:hover { background: var(--accent-hover); }
+
+@media (max-width: 600px) {
+    #transmission { left: 12px; bottom: 64px; }
+    .tx-badge { font-size: 0.68rem; letter-spacing: 0; padding: 10px 10px; white-space: nowrap; }
+    .tx-ignore-mini { padding: 0 10px; }
+    .tx-panel { width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .tx-dot, body.hacker #transmission.visible { animation: none; }
+}
+
+.tx-row { display: flex; gap: 8px; align-items: stretch; }
+#transmission.open .tx-row { display: none; }
+.tx-badge { flex: 1; min-width: 0; }
+
+.tx-ignore-mini,
+.tx-ignore {
+    font-family: inherit;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    color: var(--text-dim);
+    background: rgba(3, 8, 5, 0.94);
+    border: 1px solid var(--border-strong);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.25s;
+}
+.tx-ignore-mini { padding: 0 12px; }
+.tx-ignore { display: block; width: 100%; margin-top: 8px; padding: 9px 14px; border-radius: 6px; }
+.tx-ignore-mini:hover,
+.tx-ignore:hover { color: #fff; border-color: var(--accent-strong); }
 </style>
 </head>
 
@@ -633,6 +762,28 @@ body.hacker .sys-status { display: block; }
 <canvas id="matrix"></canvas>
 <div id="progress"></div>
 <div id="boot"><pre id="bootText"></pre><div class="boot-skip">click or press any key to skip</div></div>
+<div id="transmission" role="status" aria-live="polite">
+    <div class="tx-row">
+        <button class="tx-badge" id="txOpen" type="button">
+            <span class="tx-dot"></span> INCOMING TRANSMISSION · 1 UNREAD
+        </button>
+        <button class="tx-ignore-mini" id="txIgnoreMini" type="button">Ignore</button>
+    </div>
+    <div class="tx-panel">
+        <div class="tx-head">
+            <span>📡 INCOMING TRANSMISSION</span>
+            <button class="tx-close" id="txClose" type="button" aria-label="Dismiss">×</button>
+        </div>
+        <div class="tx-body">
+            <div><b>FROM</b>&nbsp;&nbsp;&nbsp;&nbsp;: erick@ortizLabs</div>
+            <div><b>SUBJECT</b>&nbsp;: Resume on file</div>
+            <div><b>SIGNAL</b>&nbsp;&nbsp;: <span class="tx-signal">STRONG</span></div>
+            <div class="tx-msg">&gt; Signal received. Resume is ready for review.</div>
+            <a class="tx-open" href="./resume.pdf" target="_blank" rel="noopener">[ Open Resume ]</a>
+            <button class="tx-ignore" id="txIgnore" type="button">Ignore</button>
+        </div>
+    </div>
+</div>
 <button class="hacker-toggle" id="hackerToggle" type="button">[ hacker mode: on ]</button>
 
 
@@ -694,6 +845,9 @@ body.hacker .sys-status { display: block; }
                 <a class="button button-secondary"
                    href="https://www.linkedin.com/in/erick-ortiz-1b1046336/"
                    target="_blank" rel="noopener">LinkedIn</a>
+                <a class="button button-secondary"
+                   href="./resume.pdf"
+                   target="_blank" rel="noopener">Resume</a>
             </div>
 
         </div>
@@ -1127,6 +1281,7 @@ body.hacker .sys-status { display: block; }
         }
     }
     function begin() {
+        setTimeout(showTx, reduce ? 500 : 3000);
         if (reduce) { typedEl.textContent = text; termOut.classList.add("show"); }
         else { type(); }
     }
@@ -1198,6 +1353,33 @@ body.hacker .sys-status { display: block; }
     tick();
     setInterval(tick, 1000);
 
+    /* ---- Incoming transmission popup (hacker mode only) ---- */
+    var tx = document.getElementById("transmission");
+    function txDismissed() {
+        try {
+            return sessionStorage.getItem("txDismissed") === "1" ||
+                   localStorage.getItem("txIgnored") === "1";
+        } catch (e) { return false; }
+    }
+    function showTx() {
+        if (!txDismissed()) tx.classList.add("visible");
+    }
+    function closeTx() {
+        tx.classList.remove("visible", "open");
+        try { sessionStorage.setItem("txDismissed", "1"); } catch (e) {}
+    }
+    document.getElementById("txOpen").addEventListener("click", function () { tx.classList.add("open"); });
+    document.getElementById("txClose").addEventListener("click", closeTx);
+    function ignoreTx() {
+        try { localStorage.setItem("txIgnored", "1"); } catch (e) {}
+        closeTx();
+    }
+    document.getElementById("txIgnore").addEventListener("click", ignoreTx);
+    document.getElementById("txIgnoreMini").addEventListener("click", ignoreTx);
+    document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && tx.classList.contains("open")) closeTx();
+    });
+
     /* ---- Boot sequence (once per browser session) ---- */
     var boot = document.getElementById("boot");
     var bootText = document.getElementById("bootText");
@@ -1218,7 +1400,7 @@ body.hacker .sys-status { display: block; }
         if (boot.dataset.done) return;
         boot.dataset.done = "1";
         boot.style.opacity = "0";
-        setTimeout(function () { boot.style.display = "none"; }, 500);
+        setTimeout(function () { boot.style.display = "none"; }, 150);
         try { sessionStorage.setItem("booted", "1"); } catch (e) {}
         begin();
     }
@@ -1230,8 +1412,8 @@ body.hacker .sys-status { display: block; }
             if (boot.dataset.done) { clearInterval(iv); return; }
             bootText.textContent += (n ? "\n" : "") + bootLines[n];
             n++;
-            if (n >= bootLines.length) { clearInterval(iv); setTimeout(finishBoot, 600); }
-        }, 500);
+            if (n >= bootLines.length) { clearInterval(iv); setTimeout(finishBoot, 100); }
+        }, 30);
         boot.addEventListener("click", finishBoot);
         document.addEventListener("keydown", finishBoot, { once: true });
     } else {
@@ -1248,3 +1430,4 @@ body.hacker .sys-status { display: block; }
 
 </body>
 </html>
+
