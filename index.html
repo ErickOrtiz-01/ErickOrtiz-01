@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Erick Ortiz | IT Portfolio</title>
+<title>Erick Ortiz | IT & Cybersecurity Portfolio</title>
 <meta name="description" content="Erick Ortiz - IT Support, Networking, Systems Administration and Cybersecurity Portfolio">
 
 <style>
@@ -521,19 +521,125 @@ body.hacker .skill::before { content: "$ "; color: var(--accent); }
 @media (prefers-reduced-motion: reduce) {
     .cursor { animation: none; }
 }
+
+/* =========================
+   MORE HACKER MODE EXTRAS
+========================= */
+body.hacker {
+    background-image:
+        radial-gradient(circle at top right, rgba(0, 200, 83, 0.12), transparent 35%),
+        radial-gradient(rgba(0, 232, 92, 0.07) 1px, transparent 1px);
+    background-size: auto, 28px 28px;
+}
+
+/* scroll progress bar */
+#progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 2px;
+    width: 0;
+    z-index: 2500;
+    background: var(--accent);
+    box-shadow: 0 0 10px var(--accent);
+    display: none;
+}
+body.hacker #progress { display: block; }
+
+/* nav, labels, captions, badges */
+body.hacker .nav-links a { font-family: var(--mono); font-size: 0.82rem; }
+body.hacker .nav-links a::before { content: "./"; color: var(--accent); opacity: 0.7; }
+body.hacker .section-label::before { content: "// "; opacity: 0.7; }
+body.hacker .cert-status::before { content: "[OK] "; opacity: 0.8; }
+body.hacker .image-caption { font-family: var(--mono); font-size: 0.75rem; }
+body.hacker .image-caption::before { content: "# "; color: var(--accent); }
+body.hacker .lab-screenshot { border-color: rgba(0, 232, 92, 0.3); }
+body.hacker ::selection { background: rgba(0, 232, 92, 0.3); color: #fff; }
+
+/* terminal window dots on cards */
+body.hacker .project,
+body.hacker .project-overview { position: relative; padding-top: 48px; }
+
+body.hacker .project::before,
+body.hacker .project-overview::before {
+    content: "";
+    position: absolute;
+    top: 18px;
+    left: 20px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(0, 232, 92, 0.55);
+    box-shadow: 14px 0 rgba(0, 232, 92, 0.3), 28px 0 rgba(0, 232, 92, 0.15);
+}
+
+/* terminal output lines under the typed command */
+.terminal-out {
+    display: none;
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    margin: -10px 0 24px;
+    line-height: 1.8;
+}
+.terminal-out div { opacity: 0; animation: lineIn 0.4s forwards; }
+.terminal-out div:nth-child(2) { animation-delay: 0.25s; }
+.terminal-out div:nth-child(3) { animation-delay: 0.5s; }
+.terminal-out div:nth-child(4) { animation-delay: 0.75s; }
+.terminal-out b { color: var(--accent-light); font-weight: 400; }
+body.hacker .terminal-out.show { display: block; }
+@keyframes lineIn { to { opacity: 1; } }
+
+/* glitch on name hover */
+body.hacker .hero h1 span { display: inline-block; }
+body.hacker .hero h1:hover span { animation: glitch 0.45s steps(2, end) 1; }
+@keyframes glitch {
+    0%, 100% { transform: none; text-shadow: 0 0 14px rgba(0, 232, 92, 0.65); }
+    20% { transform: translate(-2px, 1px); text-shadow: 3px 0 #ffffff, -3px 0 #00c853; }
+    40% { transform: translate(2px, -1px); text-shadow: -3px 0 #ffffff, 3px 0 #00c853; }
+    60% { transform: translate(-1px, 0); text-shadow: 2px 0 #00e85c, -2px 0 #ffffff; }
+    80% { transform: translate(1px, 1px); text-shadow: -2px 0 #00e85c, 2px 0 #00c853; }
+}
+
+/* system status line in footer */
+.sys-status { display: none; font-family: var(--mono); font-size: 0.75rem; margin-top: 8px; color: var(--accent-strong); }
+body.hacker .sys-status { display: block; }
+
+/* boot sequence overlay */
+#boot {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 3000;
+    background: #000;
+    padding: 6vh 6vw;
+    font-family: var(--mono);
+    font-size: 0.9rem;
+    color: var(--accent);
+    transition: opacity 0.5s;
+    cursor: pointer;
+}
+#boot pre { font-family: inherit; white-space: pre-wrap; line-height: 1.7; }
+#boot .boot-skip { position: absolute; right: 6vw; bottom: 5vh; color: var(--text-faint); font-size: 0.75rem; }
+
+@media (max-width: 600px) {
+    #boot { font-size: 0.75rem; }
+}
 </style>
 </head>
 
 <body class="hacker">
 
 <canvas id="matrix"></canvas>
+<div id="progress"></div>
+<div id="boot"><pre id="bootText"></pre><div class="boot-skip">click or press any key to skip</div></div>
 <button class="hacker-toggle" id="hackerToggle" type="button">[ hacker mode: on ]</button>
 
 
 <!-- NAVIGATION -->
 <nav>
     <div class="nav-container">
-        <a href="#" class="logo">ortiz<span>Labs</span></a>
+        <a href="#" class="logo">erick<span>.ortiz</span></a>
 
         <ul class="nav-links">
             <li><a href="#about">About</a></li>
@@ -556,6 +662,13 @@ body.hacker .skill::before { content: "$ "; color: var(--accent); }
             <div class="terminal" aria-hidden="true">
                 <span class="prompt">erick@ortizLabs:~$</span>
                 <span id="typed"></span><span class="cursor"></span>
+            </div>
+
+            <div class="terminal-out" id="termOut" aria-hidden="true">
+                <div><b>role</b>&nbsp;&nbsp;&nbsp;: Signal Operations Support Specialist</div>
+                <div><b>certs</b>&nbsp;&nbsp;: Network+, AZ-900</div>
+                <div><b>focus</b>&nbsp;&nbsp;: Windows Server, Active Directory, Networking</div>
+                <div><b>status</b>&nbsp;: open to IT opportunities</div>
             </div>
 
             <div class="status">
@@ -988,6 +1101,9 @@ body.hacker .skill::before { content: "$ "; color: var(--accent); }
     <div class="container">
         <p>© 2026 Erick Ortiz</p>
         <p>IT | Networking | Cybersecurity</p>
+        <p class="sys-status" aria-hidden="true">
+            sys@ortizLabs: status=online | uptime=<span id="uptime">00:00:00</span> | local=<span id="clock">--:--:--</span>
+        </p>
     </div>
 </footer>
 
@@ -1000,14 +1116,20 @@ body.hacker .skill::before { content: "$ "; color: var(--accent); }
     /* ---- Typing effect ---- */
     var typedEl = document.getElementById("typed");
     var text = "whoami && cat role.txt  # IT Support | Networking | Cybersecurity";
+    var termOut = document.getElementById("termOut");
     var i = 0;
     function type() {
         if (i <= text.length) {
             typedEl.textContent = text.slice(0, i++);
             setTimeout(type, 45);
+        } else {
+            termOut.classList.add("show");
         }
     }
-    if (reduce) { typedEl.textContent = text; } else { type(); }
+    function begin() {
+        if (reduce) { typedEl.textContent = text; termOut.classList.add("show"); }
+        else { type(); }
+    }
 
     /* ---- Matrix rain ---- */
     var canvas = document.getElementById("matrix");
@@ -1053,6 +1175,74 @@ body.hacker .skill::before { content: "$ "; color: var(--accent); }
     try { saved = localStorage.getItem("hackerMode"); } catch (e) {}
     setMode(saved !== "0");
     btn.addEventListener("click", function () { setMode(!body.classList.contains("hacker")); });
+    /* ---- Scroll progress bar ---- */
+    var bar = document.getElementById("progress");
+    function onScroll() {
+        var h = document.documentElement.scrollHeight - window.innerHeight;
+        bar.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + "%";
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    /* ---- Footer uptime + clock ---- */
+    var startTime = Date.now();
+    var upEl = document.getElementById("uptime");
+    var clockEl = document.getElementById("clock");
+    function pad(n) { return (n < 10 ? "0" : "") + n; }
+    function tick() {
+        var sec = Math.floor((Date.now() - startTime) / 1000);
+        upEl.textContent = pad(Math.floor(sec / 3600)) + ":" + pad(Math.floor(sec / 60) % 60) + ":" + pad(sec % 60);
+        var d = new Date();
+        clockEl.textContent = pad(d.getHours()) + ":" + pad(d.getMinutes()) + ":" + pad(d.getSeconds());
+    }
+    tick();
+    setInterval(tick, 1000);
+
+    /* ---- Boot sequence (once per browser session) ---- */
+    var boot = document.getElementById("boot");
+    var bootText = document.getElementById("bootText");
+    var bootLines = [
+        "ortizLabs BIOS v1.0",
+        "[  OK  ] Mounting /home/erick",
+        "[  OK  ] Loading certifications: Network+, AZ-900",
+        "[  OK  ] Starting service: active-directory",
+        "[  OK  ] Starting service: networking",
+        "[  OK  ] Reaching target: portfolio.target",
+        "",
+        "Welcome, visitor."
+    ];
+    var booted = false;
+    try { booted = sessionStorage.getItem("booted") === "1"; } catch (e) {}
+
+    function finishBoot() {
+        if (boot.dataset.done) return;
+        boot.dataset.done = "1";
+        boot.style.opacity = "0";
+        setTimeout(function () { boot.style.display = "none"; }, 500);
+        try { sessionStorage.setItem("booted", "1"); } catch (e) {}
+        begin();
+    }
+
+    if (body.classList.contains("hacker") && !reduce && !booted) {
+        boot.style.display = "block";
+        var n = 0;
+        var iv = setInterval(function () {
+            if (boot.dataset.done) { clearInterval(iv); return; }
+            bootText.textContent += (n ? "\n" : "") + bootLines[n];
+            n++;
+            if (n >= bootLines.length) { clearInterval(iv); setTimeout(finishBoot, 600); }
+        }, 160);
+        boot.addEventListener("click", finishBoot);
+        document.addEventListener("keydown", finishBoot, { once: true });
+    } else {
+        begin();
+    }
+
+    /* ---- Console easter egg ---- */
+    try {
+        console.log("%c> hello, fellow admin.", "color:#00e85c;font-family:monospace;font-size:14px");
+        console.log("%cinterested in working together? eor.tiz339@outlook.com", "color:#9aa7b4;font-family:monospace");
+    } catch (e) {}
 })();
 </script>
 
