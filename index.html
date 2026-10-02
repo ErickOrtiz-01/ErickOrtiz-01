@@ -1412,8 +1412,8 @@ body.hacker #transmission.visible { display: block; animation: txIn 0.5s ease-ou
             if (boot.dataset.done) { clearInterval(iv); return; }
             bootText.textContent += (n ? "\n" : "") + bootLines[n];
             n++;
-            if (n >= bootLines.length) { clearInterval(iv); setTimeout(finishBoot, 100); }
-        }, 30);
+            if (n >= bootLines.length) { clearInterval(iv); setTimeout(finishBoot, 500); }
+        }, 40);
         boot.addEventListener("click", finishBoot);
         document.addEventListener("keydown", finishBoot, { once: true });
     } else {
