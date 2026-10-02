@@ -1231,7 +1231,7 @@ body.hacker .sys-status { display: block; }
             bootText.textContent += (n ? "\n" : "") + bootLines[n];
             n++;
             if (n >= bootLines.length) { clearInterval(iv); setTimeout(finishBoot, 600); }
-        }, 160);
+        }, 300);
         boot.addEventListener("click", finishBoot);
         document.addEventListener("keydown", finishBoot, { once: true });
     } else {
