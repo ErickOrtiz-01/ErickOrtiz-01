@@ -1551,7 +1551,7 @@ body.hacker #cmd.open { display: block; }
             bootText.textContent += (n ? "\n" : "") + bootLines[n];
             n++;
             if (n >= bootLines.length) { clearInterval(iv); setTimeout(finishBoot, 800); }
-        }, 650);
+        }, 450);
         boot.addEventListener("click", finishBoot);
         document.addEventListener("keydown", finishBoot, { once: true });
     } else {
