@@ -754,6 +754,133 @@ body.hacker #transmission.visible { display: block; animation: txIn 0.5s ease-ou
 .tx-ignore { display: block; width: 100%; margin-top: 8px; padding: 9px 14px; border-radius: 6px; }
 .tx-ignore-mini:hover,
 .tx-ignore:hover { color: #fff; border-color: var(--accent-strong); }
+
+/* =========================
+   HACKER EXTRAS 2: brackets, flicker, redact, HUD, terminal
+========================= */
+body.hacker .card,
+body.hacker .cert,
+body.hacker .project-overview,
+body.hacker .skills-demonstrated {
+    --bc: rgba(0, 232, 92, 0.55);
+    --br: 12px;
+    background-image:
+        linear-gradient(var(--bc), var(--bc)), linear-gradient(var(--bc), var(--bc)),
+        linear-gradient(var(--bc), var(--bc)), linear-gradient(var(--bc), var(--bc)),
+        linear-gradient(var(--bc), var(--bc)), linear-gradient(var(--bc), var(--bc)),
+        linear-gradient(var(--bc), var(--bc)), linear-gradient(var(--bc), var(--bc));
+    background-repeat: no-repeat;
+    background-position: 0 0, 0 0, 100% 0, 100% 0, 0 100%, 0 100%, 100% 100%, 100% 100%;
+    background-size:
+        var(--br) 2px, 2px var(--br), var(--br) 2px, 2px var(--br),
+        var(--br) 2px, 2px var(--br), var(--br) 2px, 2px var(--br);
+}
+body.hacker .card:hover,
+body.hacker .cert:hover,
+body.hacker .project-overview:hover,
+body.hacker .skills-demonstrated:hover { --bc: #00e85c; --br: 24px; }
+
+/* rare, very faint screen flicker */
+body.hacker::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 1400;
+    pointer-events: none;
+    background: #000;
+    opacity: 0;
+    animation: flick 9s infinite;
+}
+@keyframes flick { 0%, 95%, 100% { opacity: 0; } 96% { opacity: 0.07; } 97% { opacity: 0; } 98% { opacity: 0.05; } }
+
+/* redacted text */
+body.hacker .redact {
+    background: #2a3a30;
+    color: transparent;
+    border-radius: 3px;
+    cursor: pointer;
+    user-select: none;
+    transition: 0.25s;
+}
+body.hacker .redact:hover,
+body.hacker .redact:focus,
+body.hacker .redact.revealed { background: transparent; color: inherit; user-select: auto; outline: none; }
+
+/* ASCII footer banner */
+.ascii { display: none; font-family: var(--mono); font-size: 0.7rem; line-height: 1.3; color: var(--accent-strong); margin-top: 14px; overflow-x: auto; }
+body.hacker .ascii { display: block; }
+
+/* load bar for section jumps */
+#loadbar { position: fixed; top: 2px; left: 0; height: 2px; width: 0; z-index: 2500; background: var(--accent-soft); opacity: 0; pointer-events: none; }
+#loadbar.go { animation: loadSweep 0.45s ease-out forwards; }
+@keyframes loadSweep { 0% { width: 0; opacity: 1; } 80% { width: 100%; opacity: 1; } 100% { width: 100%; opacity: 0; } }
+
+/* HUD: network line + log feed */
+#hud {
+    display: none;
+    position: fixed;
+    top: 78px;
+    right: 18px;
+    z-index: 2100;
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--accent-strong);
+    text-align: right;
+    pointer-events: none;
+    line-height: 1.6;
+}
+body.hacker #hud { display: block; }
+#hudLog div { animation: lineIn 0.3s forwards; opacity: 0; color: var(--text-dim); }
+@media (max-width: 850px) { #hud { display: none !important; } }
+
+/* terminal */
+.term-btn {
+    display: none;
+    position: fixed;
+    right: 190px;
+    bottom: 18px;
+    z-index: 2000;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid var(--border-strong);
+    background: rgba(3, 5, 4, 0.9);
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: 0.25s;
+}
+.term-btn:hover { border-color: var(--accent-strong); color: var(--accent-light); }
+body.hacker .term-btn { display: block; }
+
+#cmd {
+    display: none;
+    position: fixed;
+    left: 50%;
+    bottom: 64px;
+    transform: translateX(-50%);
+    width: min(640px, 94vw);
+    z-index: 2300;
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    background: rgba(2, 6, 3, 0.97);
+    border: 1px solid var(--accent-strong);
+    border-radius: 10px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6), 0 0 24px rgba(0, 200, 83, 0.15);
+    overflow: hidden;
+}
+body.hacker #cmd.open { display: block; }
+.cmd-head { display: flex; justify-content: space-between; align-items: center; padding: 8px 14px; background: rgba(0, 232, 92, 0.1); border-bottom: 1px solid rgba(0, 232, 92, 0.25); color: var(--accent-light); font-size: 0.75rem; }
+.cmd-head button { background: none; border: none; color: var(--accent-light); font-size: 1.1rem; cursor: pointer; font-family: inherit; }
+.cmd-out { max-height: 220px; overflow-y: auto; padding: 10px 14px 0; color: var(--text-muted); line-height: 1.7; }
+.cmd-out div { white-space: pre-wrap; word-break: break-word; }
+.cmd-out .cmd-echo { color: var(--accent-light); }
+.cmd-line { display: flex; align-items: center; gap: 8px; padding: 8px 14px 12px; }
+.cmd-line span { color: var(--accent); }
+.cmd-line input { flex: 1; background: transparent; border: none; outline: none; color: var(--text); font-family: inherit; font-size: 16px; caret-color: var(--accent); }
+
+@media (max-width: 600px) { #cmd { bottom: 64px; } }
+@media (prefers-reduced-motion: reduce) { body.hacker::before, #loadbar.go { animation: none; } }
 </style>
 </head>
 
@@ -784,6 +911,14 @@ body.hacker #transmission.visible { display: block; animation: txIn 0.5s ease-ou
         </div>
     </div>
 </div>
+<div id="loadbar"></div>
+<div id="hud" aria-hidden="true"><div id="netLine"></div><div id="hudLog"></div></div>
+<div id="cmd" role="dialog" aria-label="Terminal">
+    <div class="cmd-head"><span>erick@ortizLabs: ~</span><button id="cmdClose" type="button" aria-label="Close terminal">×</button></div>
+    <div class="cmd-out" id="cmdOut"></div>
+    <div class="cmd-line"><span>$</span><input id="cmdIn" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Command"></div>
+</div>
+<button class="term-btn" id="termBtn" type="button">[ / terminal ]</button>
 <button class="hacker-toggle" id="hackerToggle" type="button">[ hacker mode: on ]</button>
 
 
@@ -824,13 +959,13 @@ body.hacker #transmission.visible { display: block; animation: txIn 0.5s ease-ou
 
             <div class="status">
                 <span class="status-dot"></span>
-                Building Experience in IT & Cybersecurity
+                Building experience in IT & Cybersecurity
             </div>
 
             <h1>Erick <span>Ortiz</span></h1>
 
             <p class="hero-subtitle">
-                Army Nat. Guard - Signal Support Specialist | Computer Info Systems Student | Network+ | AZ-900
+                Army National Guard 25U | Computer Information Systems Student | CompTIA Network+
             </p>
 
             <p class="hero-description">
@@ -860,7 +995,7 @@ body.hacker #transmission.visible { display: block; animation: txIn 0.5s ease-ou
 
         <div class="section-header">
             <div class="section-label">About Me</div>
-            <h2>Building Practical IT Experience.</h2>
+            <h2>Building practical IT experience.</h2>
             <p class="section-description">
                 My background combines military communications,
                 technical troubleshooting, customer support, and
@@ -1153,7 +1288,7 @@ body.hacker #transmission.visible { display: block; animation: txIn 0.5s ease-ou
                 <p class="timeline-org">Arkansas Army National Guard</p>
 
                 <ul>
-                    <li>Install, maintain, configure, and troubleshoot military communication systems (SINCGARS Radios, JBCP/MMCS Systems).</li>
+                    <li>Install, maintain, configure, and troubleshoot military communication systems (<span class="redact" tabindex="0" title="Hover to declassify">SINCGARS Radios, JBCP/MMCS Systems</span>).</li>
                     <li>Diagnose and resolve hardware and electronic device issues.</li>
                     <li>Configure SATCOM, LOS, and SINCGARS communication equipment.</li>
                     <li>Troubleshoot hardware, software, network connectivity, and system access issues.</li>
@@ -1258,6 +1393,9 @@ body.hacker #transmission.visible { display: block; animation: txIn 0.5s ease-ou
         <p class="sys-status" aria-hidden="true">
             sys@ortizLabs: status=online | uptime=<span id="uptime">00:00:00</span> | local=<span id="clock">--:--:--</span>
         </p>
+        <pre class="ascii" aria-hidden="true">+----------------------------------+
+|  ortizLabs :: secure shell ready |
++----------------------------------+</pre>
     </div>
 </footer>
 
@@ -1400,7 +1538,7 @@ body.hacker #transmission.visible { display: block; animation: txIn 0.5s ease-ou
         if (boot.dataset.done) return;
         boot.dataset.done = "1";
         boot.style.opacity = "0";
-        setTimeout(function () { boot.style.display = "none"; }, 500);
+        setTimeout(function () { boot.style.display = "none"; }, 150);
         try { sessionStorage.setItem("booted", "1"); } catch (e) {}
         begin();
     }
@@ -1412,13 +1550,174 @@ body.hacker #transmission.visible { display: block; animation: txIn 0.5s ease-ou
             if (boot.dataset.done) { clearInterval(iv); return; }
             bootText.textContent += (n ? "\n" : "") + bootLines[n];
             n++;
-            if (n >= bootLines.length) { clearInterval(iv); setTimeout(finishBoot, 500); }
-        }, 500);
+            if (n >= bootLines.length) { clearInterval(iv); setTimeout(finishBoot, 100); }
+        }, 30);
         boot.addEventListener("click", finishBoot);
         document.addEventListener("keydown", finishBoot, { once: true });
     } else {
         begin();
     }
+
+    /* ---- Hacker extras 2 ---- */
+    function isHack() { return body.classList.contains("hacker"); }
+    var GL = "01<>/{}[]=+*#$%&ABCDEF";
+
+    function scramble(el, mode, quick) {
+        if (reduce || el.dataset.busy) return;
+        var fin = el.dataset.orig || (el.dataset.orig = el.textContent);
+        el.dataset.busy = "1";
+        var total = quick ? 10 : Math.max(14, Math.min(fin.length, 30)), step = 0;
+        var iv = setInterval(function () {
+            step++;
+            var n = Math.floor(fin.length * step / total), out = "";
+            if (mode === "type") { out = fin.slice(0, n); }
+            else {
+                for (var k = 0; k < fin.length; k++) {
+                    out += (k < n || fin.charAt(k) === " ") ? fin.charAt(k) : GL.charAt(Math.floor(Math.random() * GL.length));
+                }
+            }
+            el.textContent = out;
+            if (step >= total) { clearInterval(iv); el.textContent = fin; delete el.dataset.busy; }
+        }, 35);
+    }
+
+    /* HUD: network line + log feed */
+    var netLine = document.getElementById("netLine");
+    var hudLog = document.getElementById("hudLog");
+    function setNet() {
+        var pr = location.protocol;
+        netLine.textContent = "[NET] " + (navigator.onLine ? "online" : "offline") + " · " +
+            (pr === "https:" ? "https secure" : pr === "file:" ? "local file" : "http");
+    }
+    setNet();
+    window.addEventListener("online", setNet);
+    window.addEventListener("offline", setNet);
+
+    function log(msg) {
+        if (!isHack()) return;
+        var d = document.createElement("div");
+        d.textContent = "[INFO] " + msg;
+        hudLog.appendChild(d);
+        while (hudLog.children.length > 3) hudLog.removeChild(hudLog.firstChild);
+        setTimeout(function () { if (d.parentNode) d.parentNode.removeChild(d); }, 3500);
+    }
+
+    /* Scroll-in: scramble headings, type labels, log the section */
+    if ("IntersectionObserver" in window) {
+        var seen = new WeakSet();
+        var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (en) {
+                if (!en.isIntersecting || seen.has(en.target) || !isHack()) return;
+                seen.add(en.target);
+                var t = en.target;
+                if (t.tagName === "SECTION") { if (t.id) log("loading: " + t.id); }
+                else if (t.tagName === "H2") { scramble(t, "scramble"); }
+                else { scramble(t, "type"); }
+            });
+        }, { threshold: 0.4 });
+        document.querySelectorAll("section[id]:not(.hero), section h2, .section-label").forEach(function (el) { io.observe(el); });
+    }
+
+    /* Hover decrypt on certs and skills, log on project hover */
+    document.querySelectorAll(".cert h3, .skill").forEach(function (el) {
+        el.addEventListener("mouseenter", function () { if (isHack()) scramble(el, "scramble", true); });
+    });
+    document.querySelectorAll(".project").forEach(function (el) {
+        el.addEventListener("mouseenter", function () {
+            var h = el.querySelector("h3");
+            if (h) log("project: " + h.textContent.trim().toLowerCase().replace(/[^a-z0-9]+/g, "-"));
+        });
+    });
+
+    /* Section jump: load bar + log */
+    var loadbar = document.getElementById("loadbar");
+    document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        a.addEventListener("click", function () {
+            if (!isHack()) return;
+            log("jump: " + id);
+            if (reduce) return;
+            loadbar.classList.remove("go");
+            void loadbar.offsetWidth;
+            loadbar.classList.add("go");
+        });
+    });
+
+    /* Redacted text: tap to toggle */
+    document.querySelectorAll(".redact").forEach(function (el) {
+        el.addEventListener("click", function () { el.classList.toggle("revealed"); });
+    });
+
+    /* Terminal */
+    var cmd = document.getElementById("cmd");
+    var cmdIn = document.getElementById("cmdIn");
+    var cmdOut = document.getElementById("cmdOut");
+    var SECTIONS = { about: "about", skills: "skills", projects: "projects", experience: "experience", certs: "certifications", contact: "contact" };
+    var CMDS = {
+        help: "commands: help, whoami, about, skills, certs, projects, experience, contact, ls, resume, linkedin, clear, exit",
+        whoami: "erick ortiz | IT | Networking | Cybersecurity",
+        about: "Computer Information Systems student and Army National Guard signal specialist building hands-on IT experience.",
+        skills: "Active Directory, Windows Server, Hyper-V, DNS, Group Policy, PowerShell, subnetting, networking, hardware troubleshooting, C++, Python",
+        certs: "CompTIA Network+ (Aug 2026), Microsoft Azure Fundamentals AZ-900 (Sep 2026)",
+        projects: "active-directory-lab: Windows Server domain (corp.ortizLabs.com), DNS, OUs, Group Policy",
+        experience: "Signal Operations Support Specialist, Arkansas Army National Guard (Oct 2023 - present)",
+        contact: "email: eor.tiz339@outlook.com | linkedin.com/in/erick-ortiz-1b1046336",
+        ls: "about/  projects/  skills/  experience/  certifications/  contact/  resume.pdf"
+    };
+    function out(text, cls) {
+        var d = document.createElement("div");
+        if (cls) d.className = cls;
+        d.textContent = text;
+        cmdOut.appendChild(d);
+        cmdOut.scrollTop = cmdOut.scrollHeight;
+    }
+    function openTerm() {
+        cmd.classList.add("open");
+        if (!cmdOut.children.length) out("ortizLabs shell ready. type 'help' to list commands.");
+        cmdIn.focus();
+    }
+    function closeTerm() { cmd.classList.remove("open"); cmdIn.blur(); }
+    function run(raw) {
+        var c = raw.trim().toLowerCase();
+        out("$ " + raw, "cmd-echo");
+        if (!c) return;
+        if (c.indexOf("sudo") === 0) { out("permission denied: nice try."); return; }
+        if (c === "clear") { cmdOut.textContent = ""; return; }
+        if (c === "exit") { closeTerm(); return; }
+        if (c === "resume" || c === "cat resume.pdf" || c === "open resume.pdf") {
+            out("opening resume.pdf ...");
+            window.open("./resume.pdf", "_blank", "noopener");
+            return;
+        }
+        if (c === "linkedin") {
+            out("opening linkedin ...");
+            window.open("https://www.linkedin.com/in/erick-ortiz-1b1046336/", "_blank", "noopener");
+            return;
+        }
+        if (CMDS[c]) {
+            out(CMDS[c]);
+            if (SECTIONS[c]) {
+                var el = document.getElementById(SECTIONS[c]);
+                if (el) el.scrollIntoView({ behavior: reduce ? "auto" : "smooth" });
+            }
+            return;
+        }
+        out("command not found: " + c + ". type 'help'.");
+    }
+    document.getElementById("termBtn").addEventListener("click", openTerm);
+    document.getElementById("cmdClose").addEventListener("click", closeTerm);
+    cmdIn.addEventListener("keydown", function (e) {
+        if (e.key === "Enter") { run(cmdIn.value); cmdIn.value = ""; }
+        else if (e.key === "Escape") { closeTerm(); }
+    });
+    document.addEventListener("keydown", function (e) {
+        var tag = (document.activeElement && document.activeElement.tagName) || "";
+        if (e.key === "/" && isHack() && tag !== "INPUT" && tag !== "TEXTAREA") {
+            e.preventDefault();
+            openTerm();
+        }
+    });
 
     /* ---- Console easter egg ---- */
     try {
@@ -1430,4 +1729,3 @@ body.hacker #transmission.visible { display: block; animation: txIn 0.5s ease-ou
 
 </body>
 </html>
-
