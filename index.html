@@ -1550,8 +1550,8 @@ body.hacker #cmd.open { display: block; }
             if (boot.dataset.done) { clearInterval(iv); return; }
             bootText.textContent += (n ? "\n" : "") + bootLines[n];
             n++;
-            if (n >= bootLines.length) { clearInterval(iv); setTimeout(finishBoot, 100); }
-        }, 30);
+            if (n >= bootLines.length) { clearInterval(iv); setTimeout(finishBoot, 800); }
+        }, 250);
         boot.addEventListener("click", finishBoot);
         document.addEventListener("keydown", finishBoot, { once: true });
     } else {
