@@ -1400,7 +1400,7 @@ body.hacker #transmission.visible { display: block; animation: txIn 0.5s ease-ou
         if (boot.dataset.done) return;
         boot.dataset.done = "1";
         boot.style.opacity = "0";
-        setTimeout(function () { boot.style.display = "none"; }, 150);
+        setTimeout(function () { boot.style.display = "none"; }, 500);
         try { sessionStorage.setItem("booted", "1"); } catch (e) {}
         begin();
     }
@@ -1413,7 +1413,7 @@ body.hacker #transmission.visible { display: block; animation: txIn 0.5s ease-ou
             bootText.textContent += (n ? "\n" : "") + bootLines[n];
             n++;
             if (n >= bootLines.length) { clearInterval(iv); setTimeout(finishBoot, 500); }
-        }, 40);
+        }, 200);
         boot.addEventListener("click", finishBoot);
         document.addEventListener("keydown", finishBoot, { once: true });
     } else {
