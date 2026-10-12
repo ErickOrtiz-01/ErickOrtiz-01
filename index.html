@@ -881,12 +881,232 @@ body.hacker #cmd.open { display: block; }
 
 @media (max-width: 600px) { #cmd { bottom: 64px; } }
 @media (prefers-reduced-motion: reduce) { body.hacker::before, #loadbar.go { animation: none; } }
+
+/* =========================================================
+   PROFESSIONAL MODE (hacker mode OFF)
+========================================================= */
+body { transition: background-color 0.4s, color 0.4s; }
+
+body:not(.hacker) {
+    --bg: #ffffff;
+    --bg-alt: #f5f7fa;
+    --bg-deep: #ffffff;
+    --bg-tag: #eef2f7;
+
+    --accent: #1d4ed8;
+    --accent-strong: #1d4ed8;
+    --accent-hover: #1e40af;
+    --accent-light: #1d4ed8;
+    --accent-soft: #1d4ed8;
+
+    --text: #1b2433;
+    --text-muted: #4b5563;
+    --text-dim: #566170;
+    --text-faint: #6b7686;
+
+    --border: #dde3ea;
+    --border-strong: #cfd7e0;
+    --border-soft: #e5eaf0;
+    --timeline: #cfd7e0;
+
+    --ink: #0f1b2d;
+    --serif: Georgia, "Times New Roman", serif;
+
+    background: #ffffff;
+    color: var(--text);
+}
+
+/* alternate section backgrounds */
+body:not(.hacker) section:nth-of-type(even) { background: var(--bg-alt); }
+body:not(.hacker) section { border-top: 1px solid var(--border-soft); }
+body:not(.hacker) .hero { border-top: none; }
+
+/* navigation */
+body:not(.hacker) nav {
+    background: rgba(255, 255, 255, 0.92);
+    border-bottom: 1px solid var(--border);
+}
+body:not(.hacker) .logo { color: var(--ink); }
+body:not(.hacker) .nav-links a { color: var(--text-muted); font-weight: 500; }
+body:not(.hacker) .nav-links a:hover { color: var(--accent); }
+
+/* hero */
+body:not(.hacker) .hero { padding: 110px 0 90px; }
+body:not(.hacker) .status {
+    background: #eef3ff;
+    border-color: #c9d8fb;
+    color: #1e3a8a;
+    font-family: inherit;
+    font-weight: 500;
+}
+body:not(.hacker) .status-dot { background: #16a34a; box-shadow: none; }
+body:not(.hacker) .hero h1 {
+    font-family: var(--serif);
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: -1.5px;
+}
+body:not(.hacker) .hero h1 span { color: inherit; }
+body:not(.hacker) .hero-subtitle { color: var(--text); font-size: 1.2rem; font-weight: 500; }
+body:not(.hacker) .hero-description { color: var(--text-muted); }
+
+/* buttons */
+body:not(.hacker) .button { border-radius: 6px; }
+body:not(.hacker) .button-primary { background: var(--accent); color: #ffffff; box-shadow: none; }
+body:not(.hacker) .button-primary:hover { background: var(--accent-hover); transform: none; }
+body:not(.hacker) .button-secondary { background: #ffffff; border-color: var(--border-strong); color: var(--ink); }
+body:not(.hacker) .button-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+/* headings */
+body:not(.hacker) .section-label {
+    font-family: inherit;
+    text-transform: none;
+    letter-spacing: 0;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--accent);
+}
+body:not(.hacker) h2 {
+    font-family: var(--serif);
+    color: var(--ink);
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+body:not(.hacker) .section-header {
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--border);
+}
+body:not(.hacker) .section-description { color: var(--text-muted); }
+
+/* cards */
+body:not(.hacker) .card,
+body:not(.hacker) .cert,
+body:not(.hacker) .project-overview,
+body:not(.hacker) .skills-demonstrated {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    box-shadow: none;
+}
+body:not(.hacker) .card:hover {
+    transform: none;
+    box-shadow: none;
+    border-color: var(--accent);
+}
+body:not(.hacker) .card h3,
+body:not(.hacker) .cert h3,
+body:not(.hacker) .project-overview h3,
+body:not(.hacker) .skills-demonstrated h3,
+body:not(.hacker) .timeline h3,
+body:not(.hacker) .education h3 { color: var(--ink); }
+body:not(.hacker) .cert p,
+body:not(.hacker) .card p { color: var(--text-muted); }
+
+/* projects */
+body:not(.hacker) .project-icon { background: #eef3ff; color: var(--accent); border-radius: 8px; }
+body:not(.hacker) .tag {
+    background: var(--bg-tag);
+    border-color: var(--border);
+    color: #334155;
+    font-family: inherit;
+    font-weight: 500;
+}
+body:not(.hacker) .project-link { color: var(--accent); }
+body:not(.hacker) .project-step h3 {
+    font-family: var(--serif);
+    color: var(--ink);
+}
+body:not(.hacker) .step-number {
+    font-family: inherit;
+    text-transform: none;
+    letter-spacing: 0;
+    font-size: 0.9rem;
+    color: var(--accent);
+}
+body:not(.hacker) .lab-screenshot {
+    border: 1px solid var(--border-strong);
+    box-shadow: 0 2px 10px rgba(15, 27, 45, 0.08);
+}
+body:not(.hacker) .image-caption { color: var(--text-faint); }
+body:not(.hacker) .project-overview strong,
+body:not(.hacker) .project-step strong { color: var(--ink); }
+
+/* skills */
+body:not(.hacker) .skill {
+    background: #ffffff;
+    border-color: var(--border-strong);
+    color: #263244;
+    border-radius: 6px;
+    font-weight: 500;
+}
+body:not(.hacker) .skill:hover { border-color: var(--accent); color: var(--accent); }
+
+/* experience / certs / education */
+body:not(.hacker) .timeline-item::before { background: var(--accent); box-shadow: 0 0 0 4px #dbe6ff; }
+body:not(.hacker) .timeline-date { font-family: inherit; font-weight: 600; color: var(--text-faint); }
+body:not(.hacker) .timeline-org { color: var(--accent); font-weight: 600; }
+body:not(.hacker) .cert-status {
+    background: #e8f6ee;
+    color: #166534;
+    font-family: inherit;
+    font-weight: 600;
+}
+body:not(.hacker) .education .school { color: var(--accent); font-weight: 600; }
+
+/* contact + footer */
+body:not(.hacker) .contact {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+}
+body:not(.hacker) .contact p { color: var(--text-muted); }
+body:not(.hacker) .contact-links a { color: var(--accent); }
+body:not(.hacker) footer { background: #ffffff; border-top: 1px solid var(--border); color: var(--text-faint); }
+
+/* mode toggle button */
+body:not(.hacker) .hacker-toggle {
+    background: #ffffff;
+    border-color: var(--border-strong);
+    color: var(--text-muted);
+    box-shadow: 0 2px 8px rgba(15, 27, 45, 0.1);
+}
+body:not(.hacker) .hacker-toggle:hover { background: var(--ink); border-color: var(--ink); color: #ffffff; }
+
+/* mode switch transition overlay */
+#modeSwitch {
+    position: fixed;
+    inset: 0;
+    z-index: 4000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--mono);
+    font-size: 0.95rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+}
+#modeSwitch.on { opacity: 1; pointer-events: all; }
+#modeSwitch.from-hacker { background: #000; color: #00e85c; }
+#modeSwitch.from-pro { background: #ffffff; color: #1d4ed8; }
+#modeSwitch .ms-cursor {
+    display: inline-block;
+    width: 9px;
+    height: 1em;
+    margin-left: 4px;
+    vertical-align: text-bottom;
+    background: currentColor;
+    animation: blink 1s steps(1) infinite;
+}
+@media (prefers-reduced-motion: reduce) { #modeSwitch { transition: none; } }
 </style>
 </head>
 
 <body class="hacker">
+<script>try{if(localStorage.getItem("hackerMode")==="0")document.body.classList.remove("hacker")}catch(e){}</script>
 
 <canvas id="matrix"></canvas>
+<div id="modeSwitch"><span id="modeSwitchText"></span><span class="ms-cursor"></span></div>
 <div id="progress"></div>
 <div id="boot"><pre id="bootText"></pre><div class="boot-skip">click or press any key to skip</div></div>
 <div id="transmission" role="status" aria-live="polite">
@@ -1467,7 +1687,26 @@ body.hacker #cmd.open { display: block; }
     var saved = null;
     try { saved = localStorage.getItem("hackerMode"); } catch (e) {}
     setMode(saved !== "0");
-    btn.addEventListener("click", function () { setMode(!body.classList.contains("hacker")); });
+
+    /* ---- Mode switch with transition overlay ---- */
+    var sw = document.getElementById("modeSwitch");
+    var swText = document.getElementById("modeSwitchText");
+    var swBusy = false;
+    btn.addEventListener("click", function () {
+        if (swBusy) return;
+        var turningOn = !body.classList.contains("hacker");
+        if (reduce) { setMode(turningOn); return; }
+        swBusy = true;
+        sw.className = turningOn ? "from-pro" : "from-hacker";
+        swText.textContent = turningOn ? "> entering hacker mode..." : "> switching to professional view...";
+        void sw.offsetWidth;
+        sw.classList.add("on");
+        setTimeout(function () {
+            setMode(turningOn);
+            setTimeout(function () { sw.classList.remove("on"); swBusy = false; }, 250);
+        }, 450);
+    });
+
     /* ---- Scroll progress bar ---- */
     var bar = document.getElementById("progress");
     function onScroll() {
