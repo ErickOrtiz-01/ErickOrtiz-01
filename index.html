@@ -1099,6 +1099,33 @@ body:not(.hacker) .hacker-toggle:hover { background: var(--ink); border-color: v
     animation: blink 1s steps(1) infinite;
 }
 @media (prefers-reduced-motion: reduce) { #modeSwitch { transition: none; } }
+
+/* =========================
+   AWARDS & RECOGNITION
+========================= */
+.award-card {
+    display: grid;
+    grid-template-columns: minmax(300px, 1.1fr) 1fr;
+    gap: 40px;
+    align-items: center;
+    padding: 30px;
+    background: linear-gradient(145deg, rgba(255,255,255,0.045), rgba(255,255,255,0.015));
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px;
+}
+.award-image img { width: 100%; display: block; border-radius: 10px; border: 1px solid rgba(255,255,255,0.12); }
+.award-year { color: var(--accent-light); font-family: var(--mono); font-size: 0.85rem; margin-bottom: 6px; }
+.award-content h3 { color: #fff; font-size: 1.55rem; margin-bottom: 5px; }
+.award-org { color: var(--accent-light); margin-bottom: 14px; }
+.award-content p { color: var(--text-muted); }
+.award-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 20px; }
+body:not(.hacker) .award-card { background: #fff; border: 1px solid var(--border); border-radius: 8px; }
+body:not(.hacker) .award-image img { border: 1px solid var(--border-strong); }
+body:not(.hacker) .award-content h3 { color: var(--ink); }
+body:not(.hacker) .award-year { color: var(--text-faint); font-family: inherit; font-weight: 600; }
+body:not(.hacker) .award-org { color: var(--accent); font-weight: 600; }
+@media (max-width: 850px) { .award-card { grid-template-columns: 1fr; } }
+
 </style>
 </head>
 
@@ -1153,6 +1180,7 @@ body:not(.hacker) .hacker-toggle:hover { background: var(--ink); border-color: v
             <li><a href="#skills">Skills</a></li>
             <li><a href="#experience">Experience</a></li>
             <li><a href="#certifications">Certifications</a></li>
+            <li><a href="#awards">Awards</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </div>
@@ -1515,6 +1543,44 @@ body:not(.hacker) .hacker-toggle:hover { background: var(--ink); border-color: v
             </div>
         </div>
 
+    </div>
+</section>
+
+
+<!-- AWARDS & RECOGNITION -->
+<section id="awards">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-label">Recognition</div>
+            <h2>Awards & Recognition</h2>
+            <p class="section-description">
+                Recognition earned through technical performance, military service, and support of IT operations.
+            </p>
+        </div>
+
+        <div class="award-card">
+            <div class="award-image">
+                <img src="./army-achievement-medal.png" alt="Army Achievement Medal certificate awarded to Erick Ortiz-Cortez">
+            </div>
+
+            <div class="award-content">
+                <div class="award-year">2026</div>
+                <h3>Army Achievement Medal</h3>
+                <p class="award-org">Arkansas Army National Guard</p>
+                <p>
+                    Awarded for outstanding performance as a Brigade Tactical Systems Specialist during Annual Training 2026.
+                    Recognized for technical expertise and dedication while managing Tier 1 and Tier 2 IT support operations
+                    for the brigade command post.
+                </p>
+                <div class="award-tags">
+                    <span class="tag">Tier 1 Support</span>
+                    <span class="tag">Tier 2 Support</span>
+                    <span class="tag">IT Operations</span>
+                    <span class="tag">Troubleshooting</span>
+                    <span class="tag">Military Communications</span>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 
