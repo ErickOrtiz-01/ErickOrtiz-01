@@ -1176,11 +1176,12 @@ body:not(.hacker) .award-org { color: var(--accent); font-weight: 600; }
 
         <ul class="nav-links">
             <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#skills">Skills</a></li>
-            <li><a href="#experience">Experience</a></li>
             <li><a href="#certifications">Certifications</a></li>
             <li><a href="#awards">Awards</a></li>
+            <li><a href="#education">Education</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </div>
@@ -1274,6 +1275,34 @@ body:not(.hacker) .award-org { color: var(--accent); font-weight: 600; }
     </div>
 </section>
 
+<!-- EXPERIENCE -->
+<section id="experience">
+    <div class="container">
+
+        <div class="section-header">
+            <div class="section-label">Experience</div>
+            <h2>Technical Experience</h2>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-date">October 2023 – Present</div>
+                <h3>Signal Operations Support Specialist</h3>
+                <p class="timeline-org">Arkansas Army National Guard</p>
+
+                <ul>
+                    <li>Provide Tier 1 and Tier 2 technical support, troubleshooting system and user issues to restore operational capability.</li>
+                    <li>Configure and operate SATCOM, Line-of-Sight (LOS), and SINCGARS communications equipment.</li>
+                    <li>Configure and troubleshoot networking equipment and connected devices supporting tactical communications infrastructure.</li>
+                    <li>Perform preventive maintenance, equipment inspections, and fault isolation to identify and resolve technical issues.</li>
+                    <li>Follow established technical documentation, cybersecurity procedures, and troubleshooting processes while working in time-sensitive environments.</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</section>
+
 <!-- PROJECTS -->
 <section id="projects">
     <div class="container">
@@ -1350,8 +1379,6 @@ body:not(.hacker) .award-org { color: var(--accent); font-weight: 600; }
     </div>
 </section>
 
-
-
 <!-- SKILLS -->
 <section id="skills">
     <div class="container">
@@ -1381,34 +1408,37 @@ body:not(.hacker) .award-org { color: var(--accent); font-weight: 600; }
     </div>
 </section>
 
-<!-- EXPERIENCE -->
-<section id="experience">
+<!-- CERTIFICATIONS -->
+<section id="certifications">
     <div class="container">
 
         <div class="section-header">
-            <div class="section-label">Experience</div>
-            <h2>Technical Experience</h2>
+            <div class="section-label">Certifications</div>
+            <h2>Professional Development</h2>
         </div>
 
-        <div class="timeline">
-            <div class="timeline-item">
-                <div class="timeline-date">October 2023 – Present</div>
-                <h3>Signal Operations Support Specialist</h3>
-                <p class="timeline-org">Arkansas Army National Guard</p>
+        <div class="certifications">
 
-                <ul>
-                    <li>Provide Tier 1 and Tier 2 technical support, troubleshooting system and user issues to restore operational capability.</li>
-                    <li>Configure and operate SATCOM, Line-of-Sight (LOS), and SINCGARS communications equipment.</li>
-                    <li>Configure and troubleshoot networking equipment and connected devices supporting tactical communications infrastructure.</li>
-                    <li>Perform preventive maintenance, equipment inspections, and fault isolation to identify and resolve technical issues.</li>
-                    <li>Follow established technical documentation, cybersecurity procedures, and troubleshooting processes while working in time-sensitive environments.</li>
-                </ul>
+            <div class="cert">
+                <h3>CompTIA Network+</h3>
+                <p>Networking infrastructure, troubleshooting, and network operations.</p>
+                <span class="cert-status">Earned August 2026</span>
             </div>
+
+            <div class="cert">
+                <h3>Microsoft Certified: Azure Fundamentals (AZ-900)</h3>
+                <p>
+                    Demonstrates my foundational knowledge of cloud concepts,
+                    core Microsoft Azure services, and cloud security, governance,
+                    and pricing models.
+                </p>
+                <span class="cert-status">Earned September 2026</span>
+            </div>
+
         </div>
 
     </div>
 </section>
-
 
 <!-- AWARDS & RECOGNITION -->
 <section id="awards">
@@ -1444,38 +1474,6 @@ body:not(.hacker) .award-org { color: var(--accent); font-weight: 600; }
                 </div>
             </div>
         </div>
-    </div>
-</section>
-
-<!-- CERTIFICATIONS -->
-<section id="certifications">
-    <div class="container">
-
-        <div class="section-header">
-            <div class="section-label">Certifications</div>
-            <h2>Professional Development</h2>
-        </div>
-
-        <div class="certifications">
-
-            <div class="cert">
-                <h3>CompTIA Network+</h3>
-                <p>Networking infrastructure, troubleshooting, and network operations.</p>
-                <span class="cert-status">Earned August 2026</span>
-            </div>
-
-            <div class="cert">
-                <h3>Microsoft Certified: Azure Fundamentals (AZ-900)</h3>
-                <p>
-                    Demonstrates my foundational knowledge of cloud concepts,
-                    core Microsoft Azure services, and cloud security, governance,
-                    and pricing models.
-                </p>
-                <span class="cert-status">Earned September 2026</span>
-            </div>
-
-        </div>
-
     </div>
 </section>
 
@@ -1819,17 +1817,19 @@ body:not(.hacker) .award-org { color: var(--accent); font-weight: 600; }
     var cmd = document.getElementById("cmd");
     var cmdIn = document.getElementById("cmdIn");
     var cmdOut = document.getElementById("cmdOut");
-    var SECTIONS = { about: "about", skills: "skills", projects: "projects", experience: "experience", certs: "certifications", contact: "contact" };
+    var SECTIONS = { about: "about", experience: "experience", projects: "projects", skills: "skills", certs: "certifications", awards: "awards", education: "education", contact: "contact" };
     var CMDS = {
-        help: "commands: help, whoami, about, skills, certs, projects, experience, contact, ls, resume, linkedin, clear, exit",
+        help: "commands: help, whoami, about, experience, projects, skills, certs, awards, education, contact, ls, resume, linkedin, clear, exit",
         whoami: "erick ortiz | IT | Networking | Cybersecurity",
         about: "Computer Information Systems student and Army National Guard signal specialist building hands-on IT experience.",
         skills: "Active Directory, Windows Server, Hyper-V, DNS, Group Policy, PowerShell, subnetting, networking, hardware troubleshooting, C++, Python",
         certs: "CompTIA Network+ (Aug 2026), Microsoft Azure Fundamentals AZ-900 (Sep 2026)",
         projects: "active-directory-lab: Windows Server domain (corp.ortizLabs.com), DNS, OUs, Group Policy",
         experience: "Signal Operations Support Specialist, Arkansas Army National Guard (Oct 2023 - present)",
+        awards: "Army Achievement Medal (2026) — recognized for technical expertise and Tier 1 / Tier 2 IT support operations.",
+        education: "A.S. Computer Information Systems, Arkansas State University-Beebe — expected May 2027",
         contact: "email: eor.tiz339@outlook.com | linkedin.com/in/erick-ortiz-1b1046336",
-        ls: "about/  projects/  skills/  experience/  certifications/  contact/  resume.pdf"
+        ls: "about/  experience/  projects/  skills/  certifications/  awards/  education/  contact/  resume.pdf"
     };
     function out(text, cls) {
         var d = document.createElement("div");
