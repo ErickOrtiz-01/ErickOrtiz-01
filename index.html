@@ -1126,6 +1126,99 @@ body:not(.hacker) .award-year { color: var(--text-faint); font-family: inherit; 
 body:not(.hacker) .award-org { color: var(--accent); font-weight: 600; }
 @media (max-width: 850px) { .award-card { grid-template-columns: 1fr; } }
 
+
+/* Modern Tactical Mainframe — hacker mode only */
+.mf-directory,.mf-kicker,.mf-progress-label{display:none}
+body.hacker{background-image:none}
+body.hacker::before,body.hacker::after{animation:none;opacity:0}
+body.hacker #matrix{opacity:.40}
+body.hacker .hero{min-height:0;padding:100px 0 48px}
+body.hacker .hero-content{max-width:none;position:relative;padding:clamp(20px,4vw,48px);border:1px solid #356344;background:linear-gradient(135deg,#0c1b12ed,#030805ed);clip-path:polygon(0 18px,18px 0,calc(100% - 28px) 0,100% 28px,100% calc(100% - 18px),calc(100% - 18px) 100%,0 100%)}
+body.hacker .mf-kicker{display:block;color:#9cc9e8;font:12px var(--mono);letter-spacing:2px;margin-bottom:20px}
+body.hacker .hero h1,body.hacker .hero h1 span,body.hacker h2,body.hacker .card h3,body.hacker .cert h3{color:#e5f4ff;text-shadow:none}
+body.hacker .hero h1 span:hover{animation:none}
+body.hacker .section-label{color:#9cc9e8;letter-spacing:2px}
+body.hacker .card,body.hacker .cert,body.hacker .skill{border-radius:0;border-color:#356344;background-color:#09130d;clip-path:polygon(0 10px,10px 0,calc(100% - 16px) 0,100% 16px,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%)}
+body.hacker .mf-directory{display:block;margin:28px auto 0;max-width:100%;border:1px solid #356344;background:#07110cf5;padding:clamp(12px,3vw,28px);font-family:var(--mono)}
+.mf-head{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:#9cc9e8;font-size:11px;letter-spacing:1px}.mf-head b{color:#5dffa0}
+.mf-map{position:relative;height:clamp(320px,48vw,490px);max-width:850px;margin:auto;background-image:linear-gradient(#24473735 1px,transparent 1px),linear-gradient(90deg,#24473735 1px,transparent 1px);background-size:24px 24px}
+.mf-map svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}.mf-line{stroke:#548e76;stroke-width:1.5;fill:none;stroke-dasharray:5 4}.mf-core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:clamp(82px,19vw,155px);aspect-ratio:1;border:1px solid #00e85c;border-radius:50%;background:#08170d;display:grid;place-content:center;text-align:center;color:#e5f4ff;box-shadow:0 0 28px #00e85c25;font-weight:bold}.mf-core small{color:#5dffa0;font-size:9px}.mf-core:after{content:'';position:absolute;inset:-8px;border:1px dashed #356344;border-radius:50%;animation:mf-spin 24s linear infinite}@keyframes mf-spin{to{transform:rotate(360deg)}}
+.mf-node{position:absolute;transform:translate(-50%,-50%);width:27%;max-width:170px;padding:12px 4px;text-align:center;border:1px solid #356344;background:#0b1b11;color:#9cc9e8;font:clamp(9px,1.5vw,13px) var(--mono);text-decoration:none;clip-path:polygon(8px 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%,0 8px);transition:background .2s,color .2s}.mf-node:hover,.mf-node:focus-visible{background:#174329;color:#5dffa0;outline:2px solid #00e85c;outline-offset:-3px}.mf-node:before{content:'◇ ';color:#5dffa0}
+.mf-console{border:1px solid #31543c;background:#030805;padding:14px;color:#5dffa0;font-size:12px;line-height:1.8}.mf-console button{background:#10251a;color:#5dffa0;border:1px solid #356344;padding:8px 12px;font:inherit;cursor:pointer;margin-top:8px}.mf-console button:hover{border-color:#00e85c}.mf-console small{color:#9cc9e8}
+body.hacker #progress{top:50%;left:auto;right:8px;width:4px!important;height:200px;transform:translateY(-50%);background:#254333;box-shadow:none}#progress:before{content:'';display:block;width:100%;height:var(--mf-progress,0%);background:#00e85c;box-shadow:0 0 8px #00e85c}body.hacker .mf-progress-label{display:block;position:fixed;right:4px;top:calc(50% + 108px);font:9px var(--mono);color:#9cc9e8;z-index:2500}
+.mf-enter .mf-node{animation:mf-reveal .5s both;animation-delay:calc(var(--n)*100ms)}.mf-enter .mf-line{animation:mf-lines 1s both}@keyframes mf-reveal{from{opacity:0;filter:brightness(2)}to{opacity:1;filter:none}}@keyframes mf-lines{from{opacity:0;stroke-dashoffset:80}to{opacity:1;stroke-dashoffset:0}}
+@media(max-width:600px){body.hacker .hero{padding-top:70px}.mf-map{height:330px}.mf-node{font-size:9px;padding:10px 2px}.mf-core{font-size:12px}body.hacker #progress{right:2px}.mf-progress-label{right:2px!important}}
+@media(prefers-reduced-motion:reduce){.mf-core:after,.mf-enter .mf-node,.mf-enter .mf-line{animation:none!important}.mf-packets{display:none}}
+
+
+/* Tactical Circuit Interface */
+.mf-nav-status,.mf-return,.circuit-id{display:none}
+body.hacker .nav-links{display:none}
+body.hacker .mf-nav-status{display:block;color:#5dffa0;font:11px var(--mono)}
+body.hacker :is(.card,.cert,.timeline-item,.award-card,.contact){position:relative;isolation:isolate;border:0;border-radius:0;background:#356344;clip-path:polygon(0 18px,18px 0,calc(100% - 24px) 0,100% 24px,100% calc(100% - 18px),calc(100% - 18px) 100%,0 100%);padding:clamp(24px,3vw,36px);padding-top:48px;transition:background .25s}
+body.hacker :is(.card,.cert,.timeline-item,.award-card,.contact)::after{content:'';position:absolute;inset:2px;z-index:-1;clip-path:inherit;background:linear-gradient(#356344,#356344) 0 25px/32px 1px no-repeat,linear-gradient(#356344,#356344) 31px 10px/1px 16px no-repeat,radial-gradient(circle,#00e85c 0 2px,#09130d 3px 4px,transparent 5px) 27px 5px/9px 9px no-repeat,linear-gradient(#356344,#356344) 100% calc(100% - 25px)/45px 1px no-repeat,linear-gradient(#356344,#356344) calc(100% - 44px) calc(100% - 10px)/1px 16px no-repeat,radial-gradient(circle,#00e85c 0 2px,#09130d 3px 4px,transparent 5px) calc(100% - 40px) calc(100% - 5px)/9px 9px no-repeat,#09130d;pointer-events:none}
+body.hacker :is(.card,.cert,.timeline-item,.award-card,.contact):hover{background:#00e85c}
+body.hacker .timeline-item::before{display:none}
+body.hacker .circuit-id{display:block;position:absolute;top:15px;right:30px;color:#9cc9e8;font:10px var(--mono);letter-spacing:1px}
+body.hacker .skill{border:1px solid #356344;background:#0b1b11;clip-path:polygon(0 6px,6px 0,100% 0,100% calc(100% - 6px),calc(100% - 6px) 100%,0 100%)}
+body.hacker .skill::before{content:'◇ ';color:#5dffa0}
+body.hacker .mf-return{display:table;margin:24px 0 0 auto;padding:8px 12px;border:1px solid #356344;color:#9cc9e8;text-decoration:none;font:11px var(--mono)}
+body.hacker .mf-return:hover{color:#5dffa0;border-color:#00e85c}
+#mfDirectory{scroll-margin-top:100px}
+
+.floating-display{position:relative;padding:4px 4px 8px;background:linear-gradient(145deg,#343b40,#15191c 55%,#272d30);border:1px solid #424a4e;border-radius:5px;box-shadow:0 12px 18px -12px #000,0 0 0 1px #050705;transition:border-color .2s,box-shadow .2s}
+.floating-display::after{content:"";position:absolute;right:8px;bottom:2px;width:3px;height:3px;border-radius:50%;background:#00e85c;box-shadow:0 0 5px #00e85c;pointer-events:none}
+.floating-display:hover,.floating-display:focus-within{border-color:#587363;box-shadow:0 12px 18px -12px #000,0 0 12px #00e85c18}
+.floating-display .placeholder{aspect-ratio:16/9;min-height:0;border:0;border-radius:1px;background:#080e0a;box-shadow:inset 0 0 18px #0008;padding:12px}
+.floating-display img{display:block;width:100%;height:auto;border:0;border-radius:1px;background:#080e0a}
+.floating-display img[hidden],.floating-display .placeholder[hidden]{display:none}
+@media(prefers-reduced-motion:reduce){.floating-display{transition:none}}
+.cert .floating-display{margin:14px auto 18px;width:min(100%,300px);}
+.cert .floating-display .placeholder,.cert .floating-display img{width:100%;aspect-ratio:16/9;object-fit:contain;box-sizing:border-box;background:#080e0a}
+.cert .floating-display .placeholder{display:grid;place-content:center;text-align:center;color:#9cc9e8;font:11px monospace;gap:8px}
+.cert .floating-display .placeholder[hidden],.cert .floating-display img[hidden]{display:none}
+body:not(.hacker) .cert .floating-display{background:#e2e8f0;border-color:#cbd5e1;box-shadow:none}
+body:not(.hacker) .cert .floating-display .placeholder,body:not(.hacker) .cert .floating-display img{background:#f8fafc;color:#475569}
+
+
+.award-image .floating-display{width:100%;margin:0 auto;box-sizing:border-box}
+.award-image .floating-display .placeholder{display:grid;place-content:center;text-align:center;color:#9cc9e8;font:11px monospace;gap:8px}
+.award-image .floating-display img{border:0;border-radius:1px;width:100%;height:auto;object-fit:contain}
+.award-image .floating-display img[hidden],.award-image .floating-display .placeholder[hidden]{display:none}
+body:not(.hacker) .award-image .floating-display{background:#e2e8f0;border-color:#cbd5e1;box-shadow:none}
+body:not(.hacker) .award-image .floating-display img{border:0;background:#f8fafc}
+body:not(.hacker) .award-image .floating-display .placeholder{background:#f8fafc;color:#475569}
+
+.skill-categories{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:18px}
+.skill-category{position:relative;padding:24px;min-width:0}.skill-category h3{font-size:1.05rem;margin:0 0 16px;padding-right:52px}.skill-module{position:absolute;right:18px;top:24px;font-size:10px;color:#9cc9e8;font-family:var(--mono)}.skill-category .skill{font-size:.85rem;padding:8px 11px;overflow-wrap:anywhere}.skill-category .skills{gap:8px}body:not(.hacker) .skill-module{display:none}body:not(.hacker) .skill-category h3{padding-right:0}body.hacker .skill-category h3{color:#e5f4ff}
+
+/* Tactical mainframe return control */
+body.hacker .mf-return{display:flex;align-items:center;gap:12px;width:max-content;max-width:100%;margin:28px 0 0 auto;padding:10px 16px 10px 10px;position:relative;border:1px solid #548e76;background:linear-gradient(110deg,#10251a,#07110c);color:#9cc9e8;box-shadow:inset 3px 0 #00e85c;transition:background .2s,box-shadow .2s,border-color .2s; text-decoration:none}
+body.hacker .mf-return::before,body.hacker .mf-return::after{content:'';position:absolute;width:12px;height:8px;pointer-events:none;border-color:#5dffa0;border-style:solid}
+body.hacker .mf-return::before{top:-1px;right:-1px;border-width:2px 2px 0 0}body.hacker .mf-return::after{bottom:-1px;left:-1px;border-width:0 0 2px 2px}
+.mf-return-icon{width:40px;height:40px;flex:none;color:#5dffa0}.mf-return-icon svg{width:100%;height:100%}.mf-return-copy{display:flex;flex-direction:column;gap:4px}.mf-return-copy small{font-size:9px;letter-spacing:1px;color:#9cc9e8}.mf-return-copy strong{font-size:12px;letter-spacing:1px;color:#e5f4ff}.mf-return-arrow{font-size:21px;color:#5dffa0;margin-left:8px;transition:transform .2s}
+body.hacker .mf-return:hover,body.hacker .mf-return:focus-visible{background:#143522;border-color:#00e85c;box-shadow:inset 3px 0 #00e85c,0 0 18px #00e85c33}body.hacker .mf-return:hover .mf-return-arrow{transform:translateY(-3px)}body.hacker .mf-return:focus-visible{outline:2px solid #9cc9e8;outline-offset:4px}
+@media(prefers-reduced-motion:reduce){body.hacker .mf-return,.mf-return-arrow{transition:none}body.hacker .mf-return:hover .mf-return-arrow{transform:none}}
+
+/* Hybrid enterprise processor / hexagonal reactor */
+.mf-core{width:clamp(104px,23vw,220px);border:0;border-radius:0;background:none;box-shadow:none;filter:drop-shadow(0 0 12px #00e85c30);isolation:isolate}.mf-core:after{display:none}.mf-core .mf-core-art{position:absolute;inset:0;width:100%;height:100%;z-index:-1}.mf-core-brand{display:grid;gap:4px;justify-items:center;line-height:1.15}.mf-core-brand strong{font-size:clamp(10px,1.65vw,19px);letter-spacing:.04em;color:#e5f4ff}.mf-core-brand small{font-size:clamp(5px,.7vw,9px);color:#9cc9e8;letter-spacing:.02em}.mf-core-brand span{font-size:clamp(6px,.8vw,10px);color:#5dffa0}.mf-reactor{transform-origin:110px 110px;animation:mf-spin 20s linear infinite}.mf-enter .mf-core{animation:mf-core-start .8s both}.mf-enter .mf-node{animation-delay:calc(650ms + var(--n)*100ms)}.mf-enter .mf-line{animation-delay:400ms}.mf-packets circle{animation:mf-packet-pulse 1.5s ease-in-out infinite alternate}@keyframes mf-core-start{from{opacity:0;filter:brightness(2) drop-shadow(0 0 20px #00e85c)}to{opacity:1;filter:drop-shadow(0 0 12px #00e85c30)}}@keyframes mf-packet-pulse{from{opacity:.4}to{opacity:1}}@media(max-width:600px){.mf-core{width:clamp(100px,28vw,150px)}}@media(prefers-reduced-motion:reduce){.mf-reactor,.mf-enter .mf-core,.mf-packets circle{animation:none!important}}
+/* Tactical processor navigation nodes */
+.mf-map .mf-node{isolation:isolate;display:flex;align-items:center;justify-content:flex-start;gap:9px;text-align:left;padding:10px 9px;width:27%;max-width:190px;min-height:58px;border:0;clip-path:polygon(10px 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%,0 10px);background:linear-gradient(135deg,#5dffa0 0%,#355e46 22%,#355e46 78%,#5dffa0 100%);color:#e5f4ff;transition:background .2s,filter .2s}.mf-map .mf-node:before{content:'';position:absolute;inset:1px;z-index:-1;background:linear-gradient(135deg,#182b20,#08140d);clip-path:inherit}.mf-map .mf-node:after{content:'';position:absolute;left:0;top:35%;height:30%;width:3px;background:#5dffa0}.mf-map .mf-node-icon{position:static;inset:auto;width:23px;height:23px;flex:none;stroke:#5dffa0;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;fill:none}.mf-node-copy{display:grid;gap:4px;min-width:0}.mf-node-copy small{font-size:8px;letter-spacing:1px;color:#9cc9e8}.mf-node-copy strong{font-size:clamp(9px,1.25vw,12px);font-weight:700;overflow-wrap:anywhere}.mf-node-led{margin-left:auto;width:5px;height:5px;flex:none;border-radius:50%;background:#5dffa0;box-shadow:0 0 7px #00e85c}.mf-map .mf-node:hover,.mf-map .mf-node:focus-visible{background:#5dffa0;filter:brightness(1.35);outline:2px solid #00e85c;outline-offset:-3px}.mf-map .mf-node:hover:before,.mf-map .mf-node:focus-visible:before{background:linear-gradient(135deg,#214d30,#0a1c11)}@media(max-width:600px){.mf-map .mf-node{gap:4px;padding:7px 4px;min-height:48px}.mf-map .mf-node-icon{width:14px;height:14px}.mf-node-copy small{font-size:7px;letter-spacing:0}.mf-node-copy strong{font-size:8px}.mf-node-led{width:3px;height:3px}}@media(prefers-reduced-motion:reduce){.mf-map .mf-node{transition:none}}
+
+/* Hybrid cyber intelligence / processor / tactical identity header */
+.identity-network,.identity-meta,.identity-footer{display:none}
+body.hacker .identity-processor{position:relative;isolation:isolate;margin:24px 0 28px;padding:16px clamp(8px,4vw,52px);overflow:hidden}
+body.hacker .identity-network{display:block;position:absolute;inset:0;width:100%;height:100%;z-index:-1;opacity:.65;pointer-events:none}
+body.hacker .identity-shell{padding:2px;background:linear-gradient(135deg,#5dffa0,#356344 22%,#16291e 65%,#548e76);clip-path:polygon(0 20px,20px 0,100% 0,100% calc(100% - 20px),calc(100% - 20px) 100%,0 100%)}
+body.hacker .identity-inner{position:relative;padding:clamp(15px,3vw,32px);background:linear-gradient(145deg,#12251a,#07130c 60%);clip-path:polygon(0 19px,19px 0,100% 0,100% calc(100% - 19px),calc(100% - 19px) 100%,0 100%);text-align:center}
+body.hacker .identity-inner:before{content:'';position:absolute;inset:7px;border:1px solid #356344;pointer-events:none;clip-path:polygon(0 12px,12px 0,100% 0,100% calc(100% - 12px),calc(100% - 12px) 100%,0 100%)}
+body.hacker .identity-meta,body.hacker .identity-footer{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;font:10px var(--mono);letter-spacing:1px;color:#9cc9e8;text-align:left}
+body.hacker .identity-meta{border-bottom:1px solid #356344;padding-bottom:12px;margin-bottom:20px}body.hacker .identity-meta span:last-child{color:#5dffa0}
+body.hacker .identity-footer{border-top:1px solid #356344;padding-top:12px;margin-top:16px}
+body.hacker .identity-bars{width:78px;height:13px;background:repeating-linear-gradient(90deg,#548e76 0 2px,transparent 2px 5px,#548e76 5px 6px,transparent 6px 9px)}
+body.hacker .identity-inner h1{font-size:clamp(2rem,7vw,5.5rem);letter-spacing:-.04em;margin:0 0 12px;overflow-wrap:anywhere}
+body.hacker .identity-inner .hero-subtitle{color:#9cc9e8;margin:0;font-size:clamp(.85rem,1.7vw,1.2rem)}
+@media(prefers-reduced-motion:reduce){body.hacker .identity-network{display:none}}
 </style>
 </head>
 
@@ -1134,7 +1227,7 @@ body:not(.hacker) .award-org { color: var(--accent); font-weight: 600; }
 
 <canvas id="matrix"></canvas>
 <div id="modeSwitch"><span id="modeSwitchText"></span><span class="ms-cursor"></span></div>
-<div id="progress"></div>
+<div id="progress"></div><span class="mf-progress-label" aria-hidden="true">0%</span>
 <div id="boot"><pre id="bootText"></pre><div class="boot-skip">click or press any key to skip</div></div>
 <div id="transmission" role="status" aria-live="polite">
     <div class="tx-row">
@@ -1174,6 +1267,7 @@ body:not(.hacker) .award-org { color: var(--accent); font-weight: 600; }
     <div class="nav-container">
         <a href="#" class="logo">ortiz<span>Labs</span></a>
 
+        <span class="mf-nav-status">● PUBLIC INTERFACE // ONLINE</span>
         <ul class="nav-links">
             <li><a href="#about">About</a></li>
             <li><a href="#experience">Experience</a></li>
@@ -1193,28 +1287,31 @@ body:not(.hacker) .award-org { color: var(--accent); font-weight: 600; }
 <section class="hero">
     <div class="container">
         <div class="hero-content">
+<div class="mf-kicker">ORTIZ CORP // MAINFRAME &nbsp; | &nbsp; PUBLIC INTERFACE</div>
 
-            <div class="terminal" aria-hidden="true">
-                <span class="prompt">erick@ortizLabs:~$</span>
-                <span id="typed"></span><span class="cursor"></span>
-            </div>
 
-            <div class="terminal-out" id="termOut" aria-hidden="true">
-                <div><b>role</b>&nbsp;&nbsp;&nbsp;: Signal Operations Support Specialist</div>
-                <div><b>certs</b>&nbsp;&nbsp;: Network+, AZ-900</div>
-                <div><b>status</b>&nbsp;: open to IT opportunities</div>
-            </div>
+
 
             <div class="status">
                 <span class="status-dot"></span>
                 Building experience in IT & Cybersecurity
             </div>
 
+            <div class="identity-processor">
+                <svg class="identity-network" viewBox="0 0 800 180" preserveAspectRatio="none" aria-hidden="true">
+                  <g fill="none" stroke="#548e76" stroke-width="1.2"><path d="M0 15 H70 L145 90 H655 L730 15 H800 M0 55 H45 L95 105 H705 L755 55 H800 M0 165 H70 L145 90 M800 165 H730 L655 90 M0 105 H45 L95 155 H705 L755 105 H800"/></g>
+                  <g fill="#5dffa0"><circle r="3"><animateMotion dur="4s" repeatCount="indefinite" path="M0 15 H70 L145 90 H655 L730 15 H800"/></circle><circle r="3"><animateMotion dur="5s" repeatCount="indefinite" path="M800 165 H730 L655 90 H145 L70 165 H0"/></circle></g>
+                </svg>
+                <div class="identity-shell"><div class="identity-inner">
+                <div class="identity-meta" aria-hidden="true"><span>IDENTITY PROCESSOR // PROFILE.01</span><span>● AUTHENTICATED</span></div>
             <h1>Erick <span>Ortiz</span></h1>
 
             <p class="hero-subtitle">
                 Army National Guard 25U | CIS Student | Network+ | AZ-900
             </p>
+                <div class="identity-footer" aria-hidden="true"><span>OCL // PUBLIC INTERFACE</span><span class="identity-bars"></span></div>
+                </div></div>
+            </div>
 
             <p class="hero-description">
                Computer Information Systems student and CompTIA Network+ & Azure Fundamentals certified IT professional building hands-on experience across technical support, networking, 
@@ -1236,6 +1333,7 @@ body:not(.hacker) .award-org { color: var(--accent); font-weight: 600; }
     </div>
 </section>
 
+<div class="container"><div class="mf-directory" id="mfDirectory"><div class="mf-head"><span>01 // INTERACTIVE NETWORK DIRECTORY</span><b>● PUBLIC INTERFACE</b></div><div class="mf-map"><svg viewBox="0 0 1000 500" preserveAspectRatio="none" aria-hidden="true"><path class="mf-line" d="M500 250 L170 65"/><path class="mf-line" d="M500 250 L830 65"/><path class="mf-line" d="M500 250 L140 190"/><path class="mf-line" d="M500 250 L860 190"/><path class="mf-line" d="M500 250 L140 325"/><path class="mf-line" d="M500 250 L860 325"/><path class="mf-line" d="M500 250 L170 440"/><path class="mf-line" d="M500 250 L830 440"/><g class="mf-packets"><circle r="3" fill="#5dffa0"><animateMotion dur="3s" repeatCount="indefinite" path="M500 250 L170 65"/></circle><circle r="3" fill="#5dffa0"><animateMotion dur="4s" repeatCount="indefinite" path="M500 250 L830 65"/></circle><circle r="3" fill="#5dffa0"><animateMotion dur="5s" repeatCount="indefinite" path="M500 250 L140 190"/></circle></g></svg><div class="mf-core" aria-label="Ortiz Corp Labs central mainframe"><svg class="mf-core-art" viewBox="0 0 220 220" aria-hidden="true"><g stroke="#548e76" stroke-width="3" fill="none"><path d="M70 27 V15 M70 193 V205 M27 70 H15 M193 70 H205"/><path d="M90 27 V15 M90 193 V205 M27 90 H15 M193 90 H205"/><path d="M110 27 V15 M110 193 V205 M27 110 H15 M193 110 H205"/><path d="M130 27 V15 M130 193 V205 M27 130 H15 M193 130 H205"/><path d="M150 27 V15 M150 193 V205 M27 150 H15 M193 150 H205"/></g><path d="M110 9 L197 59 V161 L110 211 L23 161 V59 Z" fill="#14271c" stroke="#548e76" stroke-width="2"/><path d="M110 20 L187 65 V155 L110 200 L33 155 V65 Z" fill="#07130c" stroke="#00e85c" stroke-width="2"/><g class="mf-reactor"><circle cx="110" cy="110" r="72" fill="none" stroke="#00e85c" stroke-width="4" stroke-dasharray="34 12 8 12"/><circle cx="110" cy="110" r="64" fill="none" stroke="#548e76" stroke-dasharray="3 7"/></g><circle cx="110" cy="110" r="57" fill="#08170d" stroke="#356344"/><path d="M23 82 V59 L47 45 M173 45 L197 59 V82 M197 138 V161 L173 175 M47 175 L23 161 V138" fill="none" stroke="#5dffa0" stroke-width="4"/></svg><div class="mf-core-brand"><strong>ORTIZ CORP<br>LABS</strong><small>CENTRAL MAINFRAME</small><span>● ONLINE</span></div></div><a class="mf-node" style="left:17%;top:13%;--n:0" href="#about"><svg class="mf-node-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg><span class="mf-node-copy"><small aria-hidden="true">NODE.01</small><strong>PROFILE</strong></span><span class="mf-node-led" aria-hidden="true"></span></a><a class="mf-node" style="left:83%;top:13%;--n:1" href="#projects"><svg class="mf-node-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 9h18M7 13l3 3 5-5"/></svg><span class="mf-node-copy"><small aria-hidden="true">NODE.02</small><strong>PROJECTS</strong></span><span class="mf-node-led" aria-hidden="true"></span></a><a class="mf-node" style="left:14%;top:38%;--n:2" href="#experience"><svg class="mf-node-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V3h8v4M3 13h18"/></svg><span class="mf-node-copy"><small aria-hidden="true">NODE.03</small><strong>EXPERIENCE</strong></span><span class="mf-node-led" aria-hidden="true"></span></a><a class="mf-node" style="left:86%;top:38%;--n:3" href="#skills"><svg class="mf-node-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5L2 12l6 7m8-14 6 7-6 7m-2-16-4 18"/></svg><span class="mf-node-copy"><small aria-hidden="true">NODE.04</small><strong>SKILLS</strong></span><span class="mf-node-led" aria-hidden="true"></span></a><a class="mf-node" style="left:14%;top:65%;--n:4" href="#certifications"><svg class="mf-node-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l9 4v7c0 4-5 7-9 9-4-2-9-5-9-9V6zM8 12l3 3 5-6"/></svg><span class="mf-node-copy"><small aria-hidden="true">NODE.05</small><strong>CREDENTIALS</strong></span><span class="mf-node-led" aria-hidden="true"></span></a><a class="mf-node" style="left:86%;top:65%;--n:5" href="#awards"><svg class="mf-node-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="6"/><path d="M8 13l-3 9 7-4 7 4-3-9"/></svg><span class="mf-node-copy"><small aria-hidden="true">NODE.06</small><strong>AWARDS</strong></span><span class="mf-node-led" aria-hidden="true"></span></a><a class="mf-node" style="left:17%;top:88%;--n:6" href="#education"><svg class="mf-node-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 8l10-5 10 5-10 5zM6 10v7l6 3 6-3v-7"/></svg><span class="mf-node-copy"><small aria-hidden="true">NODE.07</small><strong>EDUCATION</strong></span><span class="mf-node-led" aria-hidden="true"></span></a><a class="mf-node" style="left:83%;top:88%;--n:7" href="#contact"><svg class="mf-node-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 6l10 8L22 6"/></svg><span class="mf-node-copy"><small aria-hidden="true">NODE.08</small><strong>CONTACT</strong></span><span class="mf-node-led" aria-hidden="true"></span></a></div><div class="mf-console"><small>MAINFRAME TERMINAL // SESSION.001</small><br>[ OK ] Portfolio records mounted.<br>[ OK ] Network directory available.<br><button type="button" id="mfOpenTerminal">&gt; OPEN INTERACTIVE TERMINAL</button><br><small>Network animation is illustrative, not live telemetry.</small></div></div></div>
 <!-- ABOUT -->
 <section id="about">
     <div class="container">
@@ -1251,7 +1349,7 @@ body:not(.hacker) .award-org { color: var(--accent); font-weight: 600; }
         </div>
 
         <div class="about-grid">
-            <div class="card">
+            <div class="card"><span class="circuit-id" aria-hidden="true">NODE.01 // CONNECTED</span>
                 <h3>Technical Focus</h3>
                 <p>
                     I am currently developing skills in help desk support,
@@ -1260,7 +1358,7 @@ body:not(.hacker) .award-org { color: var(--accent); font-weight: 600; }
                 </p>
             </div>
 
-            <div class="card">
+            <div class="card"><span class="circuit-id" aria-hidden="true">NODE.02 // CONNECTED</span>
                 <h3>Career Goal</h3>
                 <p>
                     My goal is to build a strong technical foundation and
@@ -1272,6 +1370,7 @@ body:not(.hacker) .award-org { color: var(--accent); font-weight: 600; }
         </div>
 
     </div>
+<a class="mf-return" href="#mfDirectory"><span class="mf-return-icon" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="16" stroke="currentColor" stroke-dasharray="3 4"/><circle cx="20" cy="20" r="11" stroke="currentColor"/><path d="M20 12v16M14 18l6-6 6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mf-return-copy"><small>NAVIGATION // UPLINK</small><strong>RETURN TO CORE</strong></span><span class="mf-return-arrow" aria-hidden="true">↑</span></a>
 </section>
 
 <!-- EXPERIENCE -->
@@ -1284,7 +1383,7 @@ body:not(.hacker) .award-org { color: var(--accent); font-weight: 600; }
         </div>
 
         <div class="timeline">
-            <div class="timeline-item">
+            <div class="timeline-item"><span class="circuit-id" aria-hidden="true">NODE.03 // CONNECTED</span>
                 <div class="timeline-date">October 2023 – Present</div>
                 <h3>Signal Operations Support Specialist</h3>
                 <p class="timeline-org">Arkansas Army National Guard</p>
@@ -1300,6 +1399,7 @@ body:not(.hacker) .award-org { color: var(--accent); font-weight: 600; }
         </div>
 
     </div>
+<a class="mf-return" href="#mfDirectory"><span class="mf-return-icon" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="16" stroke="currentColor" stroke-dasharray="3 4"/><circle cx="20" cy="20" r="11" stroke="currentColor"/><path d="M20 12v16M14 18l6-6 6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mf-return-copy"><small>NAVIGATION // UPLINK</small><strong>RETURN TO CORE</strong></span><span class="mf-return-arrow" aria-hidden="true">↑</span></a>
 </section>
 
 <!-- PROJECTS -->
@@ -1317,7 +1417,7 @@ body:not(.hacker) .award-org { color: var(--accent); font-weight: 600; }
 
         <div class="projects">
 
-            <div class="card project">
+            <div class="card project"><span class="circuit-id" aria-hidden="true">NODE.04 // CONNECTED</span>
                 <div class="project-icon">AD</div>
                 <h3>Active Directory Enterprise Lab</h3>
                 <p>
@@ -1331,14 +1431,14 @@ body:not(.hacker) .award-org { color: var(--accent); font-weight: 600; }
                     <span class="tag">DNS</span>
                     <span class="tag">GPO</span>
                     <span class="tag">PowerShell</span>
-                    <span class="tag">Hyper-V</span>
+                    <span class="tag">Proxmox</span>
                 </div>
 
                 <a href="projects/active-directory.html" class="project-link">View Project →</a>
             </div>
 
                       <!-- PHYSICAL HOME LAB -->
-            <div class="card project">
+            <div class="card project"><span class="circuit-id" aria-hidden="true">NODE.05 // CONNECTED</span>
                 <div class="project-icon">HL</div>
             
                 <h3>Physical Home Lab</h3>
@@ -1366,7 +1466,7 @@ body:not(.hacker) .award-org { color: var(--accent); font-weight: 600; }
            
            <!-- PROJECT 2 (add back when ready) -->
 
-            <div class="card project">
+            <div class="card project"><span class="circuit-id" aria-hidden="true">NODE.06 // CONNECTED</span>
                 <div class="project-icon">IT</div>
                 <h3>Help Desk & IT Support Lab</h3>
                 <p>
@@ -1386,7 +1486,7 @@ body:not(.hacker) .award-org { color: var(--accent); font-weight: 600; }
            <!--
             PROJECT 3 (add back when ready)
 
-            <div class="card project">
+            <div class="card project"><span class="circuit-id" aria-hidden="true">NODE.07 // CONNECTED</span>
                 <div class="project-icon">CY</div>
                 <h3>Cybersecurity Labs</h3>
                 <p>
@@ -1404,6 +1504,7 @@ body:not(.hacker) .award-org { color: var(--accent); font-weight: 600; }
 
         </div>
     </div>
+<a class="mf-return" href="#mfDirectory"><span class="mf-return-icon" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="16" stroke="currentColor" stroke-dasharray="3 4"/><circle cx="20" cy="20" r="11" stroke="currentColor"/><path d="M20 12v16M14 18l6-6 6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mf-return-copy"><small>NAVIGATION // UPLINK</small><strong>RETURN TO CORE</strong></span><span class="mf-return-arrow" aria-hidden="true">↑</span></a>
 </section>
 
 <!-- SKILLS -->
@@ -1415,24 +1516,16 @@ body:not(.hacker) .award-org { color: var(--accent); font-weight: 600; }
             <h2>Technologies & Tools</h2>
         </div>
 
-        <div class="skills">
-            <span class="skill">Active Directory</span>
-            <span class="skill">Windows Server</span>
-            <span class="skill">Windows 11</span>
-            <span class="skill">Hyper-V</span>
-            <span class="skill">DNS</span>
-            <span class="skill">Group Policy</span>
-            <span class="skill">PowerShell</span>
-            <span class="skill">Subnetting</span>
-            <span class="skill">Networking</span>
-            <span class="skill">Hardware Troubleshooting</span>
-            <span class="skill">Technical Support</span>
-            <span class="skill">Cable Management</span>
-            <span class="skill">C++</span>
-            <span class="skill">Python</span>
+        <div class="skill-categories">
+            <div class="card skill-category"><span class="skill-module" aria-hidden="true">CAP.01</span><h3>Identity &amp; Windows Administration</h3><div class="skills"><span class="skill">Active Directory Domain Services (AD DS)</span><span class="skill">Windows Server 2022</span><span class="skill">Windows 11</span><span class="skill">Group Policy (GPO)</span><span class="skill">RSAT / ADUC</span><span class="skill">Organizational Units &amp; Security Groups</span><span class="skill">Delegated Permissions / RBAC</span><span class="skill">Password Resets &amp; Account Unlocks</span></div></div>
+            <div class="card skill-category"><span class="skill-module" aria-hidden="true">CAP.02</span><h3>Networking &amp; Infrastructure</h3><div class="skills"><span class="skill">TCP/IP &amp; IPv4 Subnetting</span><span class="skill">DNS &amp; DHCP</span><span class="skill">Cisco Managed Switches</span><span class="skill">Cisco Wireless Access Points</span><span class="skill">OPNsense Firewall</span><span class="skill">Network Troubleshooting</span><span class="skill">Cat5e Cabling &amp; Cable Management</span><span class="skill">PuTTY / Serial Console</span></div></div>
+            <div class="card skill-category"><span class="skill-module" aria-hidden="true">CAP.03</span><h3>Virtualization &amp; Cloud</h3><div class="skills"><span class="skill">Proxmox VE</span><span class="skill">VMware Workstation Pro</span><span class="skill">Hyper-V</span><span class="skill">VirtIO Drivers</span><span class="skill">Virtual Machine Deployment</span><span class="skill">Microsoft Azure Fundamentals</span></div></div>
+            <div class="card skill-category"><span class="skill-module" aria-hidden="true">CAP.04</span><h3>IT Support &amp; Diagnostics</h3><div class="skills"><span class="skill">Tier 1 / Tier 2 Support</span><span class="skill">Hardware &amp; Software Troubleshooting</span><span class="skill">Remote Desktop (RDP)</span><span class="skill">Command Prompt / Network Utilities</span></div></div>
+            <div class="card skill-category"><span class="skill-module" aria-hidden="true">CAP.05</span><h3>Scripting &amp; Development</h3><div class="skills"><span class="skill">PowerShell</span><span class="skill">C++</span><span class="skill">Python</span><span class="skill">HTML / CSS / JavaScript</span><span class="skill">GitHub Pages</span></div></div>
         </div>
 
     </div>
+<a class="mf-return" href="#mfDirectory"><span class="mf-return-icon" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="16" stroke="currentColor" stroke-dasharray="3 4"/><circle cx="20" cy="20" r="11" stroke="currentColor"/><path d="M20 12v16M14 18l6-6 6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mf-return-copy"><small>NAVIGATION // UPLINK</small><strong>RETURN TO CORE</strong></span><span class="mf-return-arrow" aria-hidden="true">↑</span></a>
 </section>
 
 <!-- CERTIFICATIONS -->
@@ -1446,14 +1539,16 @@ body:not(.hacker) .award-org { color: var(--accent); font-weight: 600; }
 
         <div class="certifications">
 
-            <div class="cert">
+            <div class="cert"><span class="circuit-id" aria-hidden="true">NODE.08 // CONNECTED</span>
                 <h3>CompTIA Network+</h3>
+<div class="floating-display"><div class="placeholder"><span aria-hidden="true">◇</span><span>CERTIFICATION ICON</span><span>IMAGE PENDING</span></div><img hidden alt="CompTIA Network+ certification icon" data-cert-src="images/certifications/network-plus.png"></div>
                 <p>Networking infrastructure, troubleshooting, and network operations.</p>
                 <span class="cert-status">Earned August 2026</span>
             </div>
 
-            <div class="cert">
+            <div class="cert"><span class="circuit-id" aria-hidden="true">NODE.09 // CONNECTED</span>
                 <h3>Microsoft Certified: Azure Fundamentals (AZ-900)</h3>
+<div class="floating-display"><div class="placeholder"><span aria-hidden="true">◇</span><span>CERTIFICATION ICON</span><span>IMAGE PENDING</span></div><img hidden alt="Microsoft Certified: Azure Fundamentals (AZ-900) certification icon" data-cert-src="images/certifications/az-900.png"></div>
                 <p>
                     Demonstrates my foundational knowledge of cloud concepts,
                     core Microsoft Azure services, and cloud security, governance,
@@ -1465,6 +1560,7 @@ body:not(.hacker) .award-org { color: var(--accent); font-weight: 600; }
         </div>
 
     </div>
+<a class="mf-return" href="#mfDirectory"><span class="mf-return-icon" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="16" stroke="currentColor" stroke-dasharray="3 4"/><circle cx="20" cy="20" r="11" stroke="currentColor"/><path d="M20 12v16M14 18l6-6 6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mf-return-copy"><small>NAVIGATION // UPLINK</small><strong>RETURN TO CORE</strong></span><span class="mf-return-arrow" aria-hidden="true">↑</span></a>
 </section>
 
 <!-- AWARDS & RECOGNITION -->
@@ -1478,9 +1574,9 @@ body:not(.hacker) .award-org { color: var(--accent); font-weight: 600; }
             </p>
         </div>
 
-        <div class="award-card">
+        <div class="award-card"><span class="circuit-id" aria-hidden="true">NODE.10 // CONNECTED</span>
             <div class="award-image">
-                <img src="./army-achievement-medal.png" alt="Army Achievement Medal certificate awarded to Erick Ortiz-Cortez">
+                <div class="floating-display"><div class="placeholder"><span aria-hidden="true">◇</span><span>AWARD CERTIFICATE</span><span>IMAGE PENDING</span></div><img hidden alt="Army Achievement Medal certificate awarded to Erick Ortiz-Cortez" data-cert-src="./army-achievement-medal.png"></div>
             </div>
 
             <div class="award-content">
@@ -1502,6 +1598,7 @@ body:not(.hacker) .award-org { color: var(--accent); font-weight: 600; }
             </div>
         </div>
     </div>
+<a class="mf-return" href="#mfDirectory"><span class="mf-return-icon" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="16" stroke="currentColor" stroke-dasharray="3 4"/><circle cx="20" cy="20" r="11" stroke="currentColor"/><path d="M20 12v16M14 18l6-6 6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mf-return-copy"><small>NAVIGATION // UPLINK</small><strong>RETURN TO CORE</strong></span><span class="mf-return-arrow" aria-hidden="true">↑</span></a>
 </section>
 
 <!-- EDUCATION -->
@@ -1513,7 +1610,7 @@ body:not(.hacker) .award-org { color: var(--accent); font-weight: 600; }
             <h2>Academic Background</h2>
         </div>
 
-        <div class="card education">
+        <div class="card education"><span class="circuit-id" aria-hidden="true">NODE.11 // CONNECTED</span>
             <h3>Computer Information Systems</h3>
             <p class="school">Arkansas State University-Beebe</p>
             <p>Associate of Science</p>
@@ -1527,12 +1624,13 @@ body:not(.hacker) .award-org { color: var(--accent); font-weight: 600; }
         </div>
 
     </div>
+<a class="mf-return" href="#mfDirectory"><span class="mf-return-icon" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="16" stroke="currentColor" stroke-dasharray="3 4"/><circle cx="20" cy="20" r="11" stroke="currentColor"/><path d="M20 12v16M14 18l6-6 6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mf-return-copy"><small>NAVIGATION // UPLINK</small><strong>RETURN TO CORE</strong></span><span class="mf-return-arrow" aria-hidden="true">↑</span></a>
 </section>
 
 <!-- CONTACT -->
 <section id="contact">
     <div class="container">
-        <div class="contact">
+        <div class="contact"><span class="circuit-id" aria-hidden="true">NODE.12 // CONNECTED</span>
 
             <div class="section-label">Contact</div>
             <h2>Let's Connect</h2>
@@ -1553,6 +1651,7 @@ body:not(.hacker) .award-org { color: var(--accent); font-weight: 600; }
 
         </div>
     </div>
+<a class="mf-return" href="#mfDirectory"><span class="mf-return-icon" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="16" stroke="currentColor" stroke-dasharray="3 4"/><circle cx="20" cy="20" r="11" stroke="currentColor"/><path d="M20 12v16M14 18l6-6 6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mf-return-copy"><small>NAVIGATION // UPLINK</small><strong>RETURN TO CORE</strong></span><span class="mf-return-arrow" aria-hidden="true">↑</span></a>
 </section>
 
 </main>
@@ -1577,23 +1676,9 @@ body:not(.hacker) .award-org { color: var(--accent); font-weight: 600; }
     var body = document.body;
     var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    /* ---- Typing effect ---- */
-    var typedEl = document.getElementById("typed");
-    var text = "whoami && cat role.txt  # IT Support | Networking | Cybersecurity";
-    var termOut = document.getElementById("termOut");
-    var i = 0;
-    function type() {
-        if (i <= text.length) {
-            typedEl.textContent = text.slice(0, i++);
-            setTimeout(type, 45);
-        } else {
-            termOut.classList.add("show");
-        }
-    }
     function begin() {
+        if (!reduce && body.classList.contains("hacker")) { document.getElementById("mfDirectory").classList.add("mf-enter"); scramble(document.querySelector(".hero h1 span"), "scramble", true); }
         setTimeout(showTx, reduce ? 500 : 4000);
-        if (reduce) { typedEl.textContent = text; termOut.classList.add("show"); }
-        else { type(); }
     }
 
     /* ---- Matrix rain ---- */
@@ -1663,7 +1748,7 @@ body:not(.hacker) .award-org { color: var(--accent); font-weight: 600; }
     var bar = document.getElementById("progress");
     function onScroll() {
         var h = document.documentElement.scrollHeight - window.innerHeight;
-        bar.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + "%";
+        var pct = Math.max(0, Math.min(100, h > 0 ? window.scrollY / h * 100 : 0)); bar.style.setProperty("--mf-progress", pct + "%"); document.querySelector(".mf-progress-label").textContent = Math.round(pct) + "%";
     }
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
@@ -1849,7 +1934,7 @@ body:not(.hacker) .award-org { color: var(--accent); font-weight: 600; }
         help: "commands: help, whoami, about, experience, projects, skills, certs, awards, education, contact, ls, resume, linkedin, clear, exit",
         whoami: "erick ortiz | IT | Networking | Cybersecurity",
         about: "Computer Information Systems student and Army National Guard signal specialist building hands-on IT experience.",
-        skills: "Active Directory, Windows Server, Hyper-V, DNS, Group Policy, PowerShell, subnetting, networking, hardware troubleshooting, C++, Python",
+        skills: "Identity & Windows Administration: Active Directory Domain Services (AD DS), Windows Server 2022, Windows 11, Group Policy (GPO), RSAT / ADUC, Organizational Units & Security Groups, Delegated Permissions / RBAC, Password Resets & Account Unlocks; Networking & Infrastructure: TCP/IP & IPv4 Subnetting, DNS & DHCP, Cisco Managed Switches, Cisco Wireless Access Points, OPNsense Firewall, Network Troubleshooting, Cat5e Cabling & Cable Management, PuTTY / Serial Console; Virtualization & Cloud: Proxmox VE, VMware Workstation Pro, Hyper-V, VirtIO Drivers, Virtual Machine Deployment, Microsoft Azure Fundamentals; IT Support & Diagnostics: Tier 1 / Tier 2 Support, Hardware & Software Troubleshooting, Remote Desktop (RDP), Command Prompt / Network Utilities; Scripting & Development: PowerShell, C++, Python, HTML / CSS / JavaScript, GitHub Pages",
         certs: "CompTIA Network+ (Aug 2026), Microsoft Azure Fundamentals AZ-900 (Sep 2026)",
         projects: "active-directory-lab: Windows Server domain (corp.ortizLabs.com), DNS, OUs, Group Policy",
         experience: "Signal Operations Support Specialist, Arkansas Army National Guard (Oct 2023 - present)",
@@ -1899,6 +1984,7 @@ body:not(.hacker) .award-org { color: var(--accent); font-weight: 600; }
         out("command not found: " + c + ". type 'help'.");
     }
     document.getElementById("termBtn").addEventListener("click", openTerm);
+    document.getElementById("mfOpenTerminal").addEventListener("click", openTerm);
     document.getElementById("cmdClose").addEventListener("click", closeTerm);
     cmdIn.addEventListener("keydown", function (e) {
         if (e.key === "Enter") { run(cmdIn.value); cmdIn.value = ""; }
@@ -1920,5 +2006,6 @@ body:not(.hacker) .award-org { color: var(--accent); font-weight: 600; }
 })();
 </script>
 
+<script>document.querySelectorAll('img[data-cert-src]').forEach(function(img){img.addEventListener('load',function(){img.hidden=false;img.previousElementSibling.hidden=true;});img.addEventListener('error',function(){img.hidden=true;img.previousElementSibling.hidden=false;});img.src=img.dataset.certSrc;});</script>
 </body>
 </html>
